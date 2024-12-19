@@ -17,8 +17,6 @@ extension HTMLColor {
     public static let cardBackground: Self = .init(light: .rgb(red: 245, green: 246, blue: 248), dark: .rgb(red: 25, green: 25, blue: 27))
 }
 
-
-
 extension HTMLColor {
     public static let buttonBackground: Self = .cardBackground
     
@@ -27,7 +25,6 @@ extension HTMLColor {
 //        dark: .hsla(hue: 220, saturation: 15, lightness: 15, alpha: 0.85)
 //    )
 }
-
 
 extension HTMLColor {
     public static let gray100 = HTMLColor(light: .gray100, dark: .hex("f7f7f7"))

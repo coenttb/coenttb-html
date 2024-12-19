@@ -6,8 +6,8 @@
 //
 
 import CSS
+import HTML
 import Foundation
-import PointFreeHtml
 
 extension HTMLPreview where Head == HTMLGroup<_HTMLTuple<BaseStyles, HTMLElement<HTMLText>>> {
     public static func modern(

@@ -6,8 +6,8 @@
 //
 
 import CSS
+import HTML
 import Foundation
-import PointFreeHtml
 
 public struct BaseStyles: HTML {
     public init() {
