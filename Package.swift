@@ -31,6 +31,7 @@ extension [Package.Dependency] {
         [
             .package(url: "https://github.com/apple/swift-collections.git", from: "1.1.2"),
             .package(url: "https://github.com/coenttb/swift-language.git", branch: "main"),
+            .package(url: "https://github.com/coenttb/swift-html-to-pdf.git", branch: "main"),
             .package(url: "https://github.com/coenttb/swift-html.git", branch: "main"),
             .package(url: "https://github.com/pointfreeco/swift-dependencies.git", from: "1.3.5"),
             .package(url: "https://github.com/swiftlang/swift-markdown.git", from: "0.4.0"),

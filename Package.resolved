@@ -1,5 +1,5 @@
 {
-  "originHash" : "06826fc43fdf54720e3bec7cc7aa5fe3af37e4095ec472434a61aaca470f826b",
+  "originHash" : "fbdca8c7fdc0d09ee09d7adc927e0e2344b2e048afd193d4a6e47d8bd1827dde",
   "pins" : [
     {
       "identity" : "combine-schedulers",
@@ -16,7 +16,7 @@
       "location" : "https://github.com/coenttb/pointfree-html.git",
       "state" : {
         "branch" : "main",
-        "revision" : "d8f23a5ba1e6d33285bc44612cd6aef6c7aaf196"
+        "revision" : "16274b6ee9107675dc57c49d5dc45367db824aef"
       }
     },
     {
@@ -61,7 +61,7 @@
       "location" : "https://github.com/coenttb/swift-css.git",
       "state" : {
         "branch" : "main",
-        "revision" : "d31a5665f0c3b7106b03cfae64995a720ef82596"
+        "revision" : "4be90a31063cbe49121d3480d4c6b6993cee0fcc"
       }
     },
     {
@@ -79,7 +79,7 @@
       "location" : "https://github.com/coenttb/swift-html.git",
       "state" : {
         "branch" : "main",
-        "revision" : "14892e440973780ddfe92e7a06ca63cff02f5dcb"
+        "revision" : "575fcf2ff4b1538dd16b2c70307a11a0a4c7645d"
       }
     },
     {
