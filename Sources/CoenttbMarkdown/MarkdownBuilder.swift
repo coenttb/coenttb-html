@@ -56,6 +56,10 @@ public enum MarkdownBuilder {
         return component ?? []
     }
     
+    public static func buildExpression(_ expression: String?) -> [String] {
+        return expression.map { [$0] } ?? []
+    }
+    
     public static func buildFinalResult(_ component: [String]) -> String {
         return component.joined(separator: "\n")
     }
