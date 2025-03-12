@@ -9,24 +9,6 @@ import Foundation
 import HTML
 
 extension HTMLColor {
-//    public static let cardBackground: Self = .init(
-//        light: .rgb(red: 245, green: 246, blue: 248),
-//        dark: .rgb(red: 30, green: 30, blue: 35)
-//    )
-    
-    public static let cardBackground: Self = .init(light: .rgb(red: 245, green: 246, blue: 248), dark: .rgb(red: 25, green: 25, blue: 27))
-}
-
-extension HTMLColor {
-    public static let buttonBackground: Self = .cardBackground
-    
-//    public static let buttonBackground: Self = .init(
-//        light: .hsla(hue: 220, saturation: 15, lightness: 92, alpha: 0.85),
-//        dark: .hsla(hue: 220, saturation: 15, lightness: 15, alpha: 0.85)
-//    )
-}
-
-extension HTMLColor {
     public static let gray100 = HTMLColor(light: .gray100, dark: .hex("f7f7f7"))
     public static let gray150 = HTMLColor(light: .gray150, dark: .hex("f0f0f0"))
     public static let gray200 = HTMLColor(light: .gray200, dark: .hex("e0e0e0"))
@@ -246,21 +228,3 @@ extension HTMLColor {
     public static let brown900 = Self(light: .brown900, dark: .hex("553000"))
 }
 
-extension HTMLColor {
-    public static let black = Self.init(light: .hex("121212"))
-    public static let offBlack = Self.init(light: .hex("171717"))
-    public static let white = Self.init(light: .hex("fff"))
-    public static let offWhite = Self.init(light: .hex("fafafa"))
-    
-    public static let cyan = Self.teal500
-    public static let teal = Self.teal500
-    public static let pink = Self.pink500
-    public static let brown = Self.brown500
-    
-    public static let orange = Self.orange500
-    public static let green = Self.green500
-    public static let purple = Self.purple500
-    public static let blue = Self.blue500
-    public static let red = Self.red500
-    public static let yellow = Self.yellow500
-}
