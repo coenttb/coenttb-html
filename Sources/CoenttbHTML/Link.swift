@@ -21,9 +21,9 @@ public struct Link<Label: HTML>: HTML {
     public var body: some HTML {
         a { label }
             .attribute("href", href)
-            .color(linkStyle.color)
-            .color(linkStyle.color, pseudo: .visited)
-            .color(linkStyle.color, pseudo: .link)
+            .color(.text.link)
+            .color(.text.link, pseudo: .visited)
+            .color(.text.link, pseudo: .link)
             .inlineStyle(
                 "text-decoration", linkStyle.underline == true ? "underline" : "none", pseudo: .visited
             )
@@ -38,7 +38,8 @@ public struct Link<Label: HTML>: HTML {
 
 extension HTML {
     public func linkColor(_ linkColor: HTMLColor?) -> some HTML {
-        self.dependency(\.linkStyle.color, linkColor)
+        @Dependency(\.color.text.link) var color
+        return self.dependency(\.color.text.link, linkColor ?? color)
     }
     public func linkUnderline(_ linkUnderline: Bool?) -> some HTML {
         self.dependency(\.linkStyle.underline, linkUnderline)
@@ -50,14 +51,14 @@ extension HTML {
 
 
 public struct LinkStyle: Sendable {
-    public var color: HTMLColor?
+//    public var color: HTMLColor?
     public var underline: Bool?
     
     public init(
-        color: HTMLColor? = nil,
+//        color: HTMLColor? = nil,
         underline: Bool? = nil
     ) {
-        self.color = color
+//        self.color = color
         self.underline = underline
     }
 }
