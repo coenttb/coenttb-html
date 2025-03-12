@@ -125,28 +125,28 @@ extension HTMLColor.Defaults {
 }
 
 extension HTMLColor {
-    public var `default`: HTMLColor.Defaults {
+    public static var `default`: HTMLColor.Defaults {
         @Dependency(\.color) var color
         return color
     }
 }
 
 extension HTMLColor {
-    public var text: HTMLColor.Defaults.Text {
+    public static var text: HTMLColor.Defaults.Text {
         @Dependency(\.color.text) var text
         return text
     }
 }
 
 extension HTMLColor {
-    public var background: HTMLColor.Defaults.Background {
+    public static var background: HTMLColor.Defaults.Background {
         @Dependency(\.color.background) var background
         return background
     }
 }
 
 extension HTMLColor {
-    public var branding: HTMLColor.Defaults.Branding {
+    public static var branding: HTMLColor.Defaults.Branding {
         @Dependency(\.color.branding) var branding
         return branding
     }
