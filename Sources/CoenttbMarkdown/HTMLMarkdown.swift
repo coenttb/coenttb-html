@@ -554,7 +554,8 @@ public struct Timestamp: HTML {
                     .attribute("data-timestamp", "\(duration)")
                 }
                 .fontStyle(.body(.small))
-                .linkStyle(LinkStyle(color: .gray800.withDarkColor(.gray300), underline: nil))
+                .linkStyle(.init(underline: nil))
+                .dependency(\.color.text.link, .gray800.withDarkColor(.gray300))
                 .id(id)
                 .inlineStyle("font-variant-numeric", "tabular-nums")
                 .lineHeight(3, media: .desktop)
