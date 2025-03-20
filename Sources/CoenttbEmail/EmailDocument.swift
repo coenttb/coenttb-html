@@ -25,6 +25,13 @@ public struct TableEmailDocument<Content: HTML>: EmailDocument {
                 margin: 0;
                 padding: 0;
             }
+            
+            @media (prefers-color-scheme: dark) {
+                body, table, td, div {
+                    background-color: #121212 !important;
+                    color: #ffffff !important;
+                }
+            }
             """
         }
         

@@ -81,7 +81,7 @@ extension HTMLColor.Defaults {
         public var highlighted: HTMLColor
         
         public init(
-            primary: HTMLColor = .init(light: .hex("FFFFFF"), dark: .hex("000000")),
+            primary: HTMLColor = .init(light: .hex("FFFFFF"), dark: .hex("121212")),
             secondary: HTMLColor = .init(light: .hex("F2F2F7"), dark: .hex("1C1C1E")),
             tertiary: HTMLColor = .init(light: .hex("EBEBEB"), dark: .hex("2C2C2E")),
             elevated: HTMLColor = .init(light: .hex("FFFFFF"), dark: .hex("1C1C1E")),

@@ -65,7 +65,7 @@ private struct Visitor: MarkupVisitor {
                 visit(child)
             }
         }
-        .color(.offBlack.withDarkColor(.offWhite))
+        .color(.text.primary)
         .inlineStyle("padding", "1rem 0 0.5rem 0")
         .inlineStyle("position", "relative")
     }
@@ -153,7 +153,7 @@ private struct Visitor: MarkupVisitor {
                 visit(child)
             }
         }
-        .color(.black)
+        .color(.text.primary)
         .fontStyle(.body(.regular))
         .inlineStyle("line-height", "1.5")
         .inlineStyle("padding", "0 0 0.5rem 0")
