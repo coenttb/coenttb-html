@@ -1,4 +1,5 @@
 import Foundation
+import HTML
 
 public struct SVG: HTML, Sendable {
     private enum Storage {
@@ -25,11 +26,10 @@ public struct SVG: HTML, Sendable {
             case let .raw(raw):
                 HTMLRaw(raw)
             case let .base64(base64):
-                img()
-                    .attribute("src", "data:image/svg+xml;base64,\(base64)")
+                img(src: "data:image/svg+xml;base64,\(base64)")
             }
         }
-        .attribute("alt", description)
+        .alt(self.description)
     }
 }
 

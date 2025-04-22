@@ -13,8 +13,8 @@ public struct Paragraph<Content: HTML>: HTML {
         tag("p") {
             content
         }
-        .padding(bottom: 0.5.rem, pseudo: .not(.lastChild))
-        .padding(top: 0, right: 0, left: 0)
+        .padding(.bottom(.rem(0.5)), pseudo: .not(.lastChild))
+        .padding(.top(0), .right(0), .left(0))
         .margin(0)
         .lineHeight(1.5)
     }

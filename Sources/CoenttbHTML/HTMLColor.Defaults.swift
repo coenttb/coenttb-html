@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CSS
+import HTML
 import Dependencies
 
 extension HTMLColor {
@@ -153,7 +153,7 @@ extension HTMLColor {
 }
 
 extension HTMLColor.Defaults: DependencyKey {
-    static public let liveValue: Self = .init(
+    public static let liveValue: Self = .init(
         gray: .gray500,
         blue: .blue500,
         green: .green500,
@@ -172,8 +172,9 @@ extension HTMLColor.Defaults: DependencyKey {
         text: .init(),
         background: .init(),
         branding: .init()
-            
     )
+    
+    public static let testValue: Self = liveValue
 }
 
 extension DependencyValues {
@@ -182,6 +183,8 @@ extension DependencyValues {
         set { self[HTMLColor.Defaults.self] = newValue }
     }
 }
+
+
 
 extension HTMLColor {
     public static var gray: Self {

@@ -1,75 +1,70 @@
 import Foundation
 import HTML
 
-fileprivate typealias HTMLLabel = Label
-public struct Button<Label: HTML, Icon: HTML>: HTML {
-    let tagName: String
+public struct Button<Tag: HTML, Label: HTML, Icon: HTML>: HTML {
+    let tag: Tag
     let icon: Icon?
     let label: Label
     let background: HTMLColor
     let style: Button.Style
-
+    
     public init(
-        tag: HTMLTag = a,
+        tag: Tag,
         background: HTMLColor = .buttonBackground,
         style: Button.Style = .default,
         @HTMLBuilder icon: () -> Icon,
         @HTMLBuilder label: () -> Label
     ) {
-        self.tagName = tag.rawValue
+        self.tag = tag
         self.icon = icon()
         self.label = label()
         self.background = background
         self.style = style
     }
     
-    public init(
-        tag: HTMLTag = a,
-        background: HTMLColor = .buttonBackground,
-        style: Button.Style = .default,
-        @HTMLBuilder label: () -> Label
-    ) where Icon == HTMLEmpty {
-        self.tagName = tag.rawValue
-        self.icon = HTMLEmpty()
-        self.label = label()
-        self.background = background
-        self.style = style
-    }
-
+    //    public init(
+    //        tag: Tag,
+    //        background: HTMLColor = .buttonBackground,
+    //        style: Button.Style = .default,
+    //        @HTMLBuilder label: () -> Label
+    //    ) where Icon == HTMLEmpty {
+    //        self.tag = tag.rawValue
+    //        self.icon = HTMLEmpty()
+    //        self.label = label()
+    //        self.background = background
+    //        self.style = style
+    //    }
+    
     public var body: some HTML {
-        let tag: some HTML = tag(tagName) {
+        HTMLGroup {
             if let icon = icon {
-                HTMLLabel {
+                CoenttbHTML.Label {
                     icon
                 } title: {
                     label
                 }
-
             } else {
                 label
             }
-            
         }
         .padding(
             vertical: style.verticalPadding,
             horizontal: style.horizontalPadding
         )
-        
         .display(.flex)
         .alignItems(.center)
-        .textDecoration(.none)
-        .transition("background-color 0.3s")
-        .inlineStyle("transition", "all 0.15s ease")
+        .textDecoration(TextDecoration.none)
+        .inlineStyle("transition", "background-color 0.3s")
         .inlineStyle("user-select", "none")
         .inlineStyle("-webkit-user-select", "none")
         .inlineStyle("-moz-user-select", "none")
         .inlineStyle("-ms-user-select", "none")
         .cursor(.pointer)
         
-        var borderColor: String? {
+        var borderColor: HTMLColor? {
             switch self.style {
             case .primary, .secondary, .tertiary:
-                "\(self.background.darker(by: 0.15))"
+                self.background.darker(by: 0.15)
             case .round:
                 nil
             default:
@@ -77,10 +72,10 @@ public struct Button<Label: HTML, Icon: HTML>: HTML {
             }
         }
         
-        var borderStyle: String? {
+        var borderStyle: BorderStyle? {
             switch self.style {
             case .primary, .secondary, .tertiary:
-                "none;"
+                BorderStyle.none
             case .round:
                 nil
             default:
@@ -124,11 +119,7 @@ public struct Button<Label: HTML, Icon: HTML>: HTML {
         var boxShadowDark: String? {
             switch self.style {
             case .primary, .secondary, .tertiary:
-                background.dark.map { dark in
-                    "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, \(dark.lighter(by: 0.15)) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(255, 255, 255, 0.08) 0px 2px 5px 0px;"
-                }
-                
-                
+                "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, \(background.dark.lighter(by: 0.15)) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(255, 255, 255, 0.08) 0px 2px 5px 0px;"
             case .round:
                 nil
             default:
@@ -137,13 +128,12 @@ public struct Button<Label: HTML, Icon: HTML>: HTML {
         }
         
         return tag
-            .border(.radius(.all(style.cornerRadius)))
-            .inlineStyle("border-color", borderColor)
-            .inlineStyle("border-style", borderStyle)
+            .borderRadius(.uniform(style.cornerRadius))
+            .borderStyle(borderStyle)
             .inlineStyle("border-width", "0px;")
-            .transition("background-color 0.3s, box-shadow 0.3s")
-            .inlineStyle("appearance", "none")
-//            .inlineStyle("box-shadow", "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)")
+            .inlineStyle("transition", "background-color 0.3s, box-shadow 0.3s")
+            .appearance(Appearance.none)
+            .inlineStyle("box-shadow", "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)")
             .inlineStyle(
                 "box-shadow",
                 boxShadow
@@ -157,16 +147,15 @@ public struct Button<Label: HTML, Icon: HTML>: HTML {
             .backgroundColor(backgroundColorHover, pseudo: .hover)
     }
     
-
     public struct Style: Equatable {
-        public let cornerRadius: CSS.Length
-        public let verticalPadding: CSS.Length
-        public let horizontalPadding: CSS.Length
-
+        public let cornerRadius: LengthPercentage
+        public let verticalPadding: LengthPercentage
+        public let horizontalPadding: LengthPercentage
+        
         public init(
-            cornerRadius: CSS.Length = 0.5.rem,
-            verticalPadding: CSS.Length = 0.75.rem,
-            horizontalPadding: CSS.Length = 1.rem
+            cornerRadius: LengthPercentage = .rem(0.5),
+            verticalPadding: LengthPercentage = .rem(0.75),
+            horizontalPadding: LengthPercentage = .rem(1)
         ) {
             self.cornerRadius = cornerRadius
             self.verticalPadding = verticalPadding
@@ -174,36 +163,36 @@ public struct Button<Label: HTML, Icon: HTML>: HTML {
         }
         
         public static var `default`: Self { primary }
-
+        
         public static var primary:Self {
             Style(
-                cornerRadius: 0.25.rem,
-                verticalPadding: 0.80.rem,
-                horizontalPadding: 1.6.rem
+                cornerRadius: .rem(0.25),
+                verticalPadding: .rem(0.80),
+                horizontalPadding: .rem(1.6)
             )
         }
         
         public static var secondary:Self {
             Style(
-                cornerRadius: 0.25.rem,
-                verticalPadding: 0.6.rem,
-                horizontalPadding: 0.9.rem
+                cornerRadius: .rem(0.25),
+                verticalPadding: .rem(0.6),
+                horizontalPadding: .rem(0.9)
             )
         }
         
         public static var tertiary:Self {
             Style(
-                cornerRadius: 0.25.rem,
-                verticalPadding: 0.2.rem,
-                horizontalPadding:   0.3.rem
+                cornerRadius: .rem(0.25),
+                verticalPadding: .rem(0.2),
+                horizontalPadding:   .rem(0.3)
             )
         }
         
         public static var round:Self {
             Style(
-                cornerRadius: 100.percent,
-                verticalPadding: 0.5.rem,
-                horizontalPadding: 0.5.rem
+                cornerRadius: .percentage(100),
+                verticalPadding: .rem(0.5),
+                horizontalPadding: .rem(0.5)
             )
         }
     }

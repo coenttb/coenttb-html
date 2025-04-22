@@ -24,15 +24,17 @@ extension Target.Dependency {
     static var orderedCollections: Self { .product(name: "OrderedCollections", package: "swift-collections") }
     static var swiftMarkdown: Self { .product(name: "Markdown", package: "swift-markdown") }
     static var htmlToPdf: Self { .product(name: "HtmlToPdf", package: "swift-html-to-pdf") }
+    static var htmlTestSupport: Self { .product(name: "HTMLTestSupport", package: "swift-html-css-pointfree") }
 }
 
 extension [Package.Dependency] {
     static var `default`: Self {
         [
             .package(url: "https://github.com/apple/swift-collections.git", from: "1.1.2"),
-            .package(url: "https://github.com/coenttb/swift-language.git", branch: "main"),
-            .package(url: "https://github.com/coenttb/swift-html-to-pdf.git", branch: "main"),
             .package(url: "https://github.com/coenttb/swift-html.git", branch: "main"),
+            .package(url: "https://github.com/coenttb/swift-html-to-pdf.git", branch: "main"),
+            .package(url: "https://github.com/coenttb/swift-html-css-pointfree.git", branch: "main"),
+            .package(url: "https://github.com/coenttb/swift-language.git", branch: "main"),
             .package(url: "https://github.com/pointfreeco/swift-dependencies.git", from: "1.3.5"),
             .package(url: "https://github.com/swiftlang/swift-markdown.git", from: "0.4.0"),
         ]
@@ -77,11 +79,11 @@ extension Package {
                 targets.map { target in
                     Target.testTarget(
                         name: "\(target.name) Tests",
-                        dependencies: [.init(stringLiteral: target.name)]
+                        dependencies: [.init(stringLiteral: target.name)] + [.htmlTestSupport]
                     )
                 }
             ].flatMap { $0 },
-            swiftLanguageModes: [.v5]
+            swiftLanguageModes: [.v6]
         )
     }
 }

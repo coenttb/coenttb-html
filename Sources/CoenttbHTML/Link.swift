@@ -5,36 +5,31 @@ import HTML
 public struct Link<Label: HTML>: HTML {
     @Dependency(\.linkStyle) var linkStyle
     let label: Label
-    let href: String?
+    let href: Href?
     
-    public init(href: String?, @HTMLBuilder label: () -> Label) {
+    public init(href: Href?, @HTMLBuilder label: () -> Label) {
         self.href = href
         self.label = label()
     }
     
-    public init(_ title: String, href: String?) where Label == HTMLText {
+    public init(_ title: String, href: Href?) where Label == HTMLText {
         self.init(href: href) {
             HTMLText(title)
         }
     }
     
     public var body: some HTML {
-        a { label }
-            .attribute("href", href)
+        a(href: href) { label }
             .color(.text.link)
             .color(.text.link, pseudo: .visited)
             .color(.text.link, pseudo: .link)
-            .inlineStyle(
-                "text-decoration", linkStyle.underline == true ? "underline" : "none", pseudo: .visited
-            )
-            .inlineStyle(
-                "text-decoration", linkStyle.underline == true ? "underline" : "none", pseudo: .link
-            )
-            .inlineStyle(
-                "text-decoration", linkStyle.underline == false ? "none" : "underline", pseudo: .hover
-            )
+            .textDecoration(linkStyle.underline == true ? .underline : TextDecoration.none, pseudo: .visited)
+            .textDecoration(linkStyle.underline == true ? .underline : TextDecoration.none, pseudo: .link)
+            .textDecoration(linkStyle.underline == true ? .none : TextDecoration.underline, pseudo: .hover)
     }
 }
+
+
 
 extension HTML {
     public func linkColor(_ linkColor: HTMLColor?) -> some HTML {

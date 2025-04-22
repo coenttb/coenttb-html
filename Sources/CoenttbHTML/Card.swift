@@ -17,21 +17,32 @@ public struct Card<Content: HTML, Header: HTML, Footer: HTML>: HTML {
     public var body: some HTML {
         VStack {
             header
-                .border(.bottom(width: 1.px, style: .solid, color: .init(light: .hex("e8e8e8"), dark: .hex("3d3d3d"))))
+                .border(
+                    .bottom,
+                    width: .px(1),
+                    style: .solid,
+                    color: .init(light: .hex("e8e8e8"), dark: .hex("3d3d3d"))
+                )
             
             VStack {
                 VStack(spacing: 0.rem) { content }
-                    .grow()
+                    .flexGrow(nil)
                 
                 footer
             }
-            .grow()
-            .padding(top: 0.5.rem, horizontal: 1.5.rem, bottom: 1.5.rem)
+            .flexGrow(nil)
+            .padding(top: .rem(0.5), horizontal: .rem(1.5), bottom: .rem(1.5))
         }
-//        .border(width: 1.px, style: .solid, color: .init(rawValue: "#353535"), media: .dark)
+        .border(
+            .bottom,
+            width: .px(1),
+            style: .solid,
+            color: .init(light: .hex("#353535")),
+            media: .prefersColorScheme(.dark)
+        )
         .inlineStyle("border", "1px #353535 solid", media: .dark)
         .inlineStyle("box-shadow", "0 4px 12px rgba(0, 0, 0, 0.1)")
-        .border(.radius(7.5.px))
+        .borderRadius(.length(7.5.px))
         .overflow(.hidden)
     }
 }

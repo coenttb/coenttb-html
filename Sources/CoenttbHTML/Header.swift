@@ -10,28 +10,26 @@ public struct Header<Content: HTML>: HTML {
     }
     
     public var body: some HTML {
-        tag("h\(size)") {
-            content
-        }
+        tag("h\(size)") { content }
         .margin(0)
-        .margin(top: marginTop, pseudo: .not(.firstChild))
-        .margin(bottom: marginBottom, pseudo: .not(.lastChild))
-        .font(.size(.length(fontSize)))
-        .font(.weight(700))
-        .lineHeight(.number(lineHeight))
+        .margin(.top(marginTop), pseudo: .not(.firstChild))
+        .margin(.bottom(marginBottom), pseudo: .not(.lastChild))
+        .fontSize(fontSize)
+        .fontWeight(700)
+        .lineHeight(lineHeight)
     }
     
-    var fontSize: Length {
+    var fontSize: CSSPropertyTypes.FontSize {
         switch size {
-        case 1: 4.rem
-        case 2: 3.rem
-        case 3: 2.rem
-        case 4: 1.5.rem
-        case 5: 1.rem
-        default: 0.875.rem
+        case 1: .rem(4)
+        case 2: .rem(3)
+        case 3: .rem(2)
+        case 4: .rem(1.5)
+        case 5: .rem(1)
+        default: .rem(0.875)
         }
     }
-    var lineHeight: Double {
+    var lineHeight: LineHeight {
         switch size {
         case 1: 1.2
         case 2: 1.2
@@ -41,24 +39,24 @@ public struct Header<Content: HTML>: HTML {
         default: 1.15
         }
     }
-    var marginBottom: Length {
+    var marginBottom: LengthPercentage {
         switch size {
-        case 1: 1.rem
-        case 2: 0.75.rem
-        case 3: 0.5.rem
-        case 4: 0.5.rem
-        case 5: 0.5.rem
-        default: 0.3.rem
+        case 1: .rem(1)
+        case 2: .rem(0.75)
+        case 3: .rem(0.5)
+        case 4: .rem(0.5)
+        case 5: .rem(0.5)
+        default: .rem(0.3)
         }
     }
-    var marginTop: Length {
+    var marginTop: LengthPercentage {
         switch size {
-        case 1: 2.rem
-        case 2: 1.75.rem
-        case 3: 1.5.rem
-        case 4: 1.5.rem
-        case 5: 0.5.rem
-        default: 0.5.rem
+        case 1: .rem(2)
+        case 2: .rem(1.75)
+        case 3: .rem(1.5)
+        case 4: .rem(1.5)
+        case 5: .rem(0.5)
+        default: .rem(0.5)
         }
     }
 }

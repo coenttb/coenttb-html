@@ -5,41 +5,44 @@
 //  Created by Coen ten Thije Boonkkamp on 28/07/2024.
 //
 
-import CSS
 import HTML
 import Foundation
 
-extension HTMLPreview where Head == HTMLGroup<_HTMLTuple<BaseStyles, HTMLElement<HTMLText>>> {
+extension HTMLDocument where Head == _ModernHead {
     public static func modern(
         body: Body
-    ) -> HTMLPreview {
-        HTMLPreview.modern {
+    ) -> HTMLDocument {
+        HTMLDocument.modern {
             body
         }
     }
     public static func modern(
         @HTMLBuilder body: () -> Body
-    ) -> HTMLPreview {
-        HTMLPreview(
+    ) -> HTMLDocument {
+        HTMLDocument(
             body: body,
-            head: {
-                HTMLGroup {
-                    BaseStyles()
-                    style {"""
-                    
-                    body, html {
-                        background: #fff;
-                    }
+            head: _ModernHead.init
+        )
+    }
+}
 
-                    @media (prefers-color-scheme: dark) {
-                        body, html {
-                            background: #121212;
-                        }
-                    }
+public struct _ModernHead: HTML {
+    public var body: some HTML {
+        HTMLGroup {
+            BaseStyles()
+            Style {"""
 
-                    """}
+            body, html {
+                background: #fff;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                body, html {
+                    background: #121212;
                 }
             }
-        )
+
+            """}
+        }
     }
 }

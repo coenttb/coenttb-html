@@ -5,7 +5,6 @@
 //  Created by Coen ten Thije Boonkkamp on 07/10/2024.
 //
 
-import CSS
 import HTML
 import Foundation
 
@@ -15,8 +14,8 @@ public struct BaseStyles: HTML {
     }
     
     public var body: some HTML {
-        style { "\(renderedNormalizeCss)" }
-        style {"""
+        Style { "\(renderedNormalizeCss)" }
+        Style {"""
         html {
             font-family: ui-sans-serif, -apple-system, Helvetica Neue, Helvetica, Arial, sans-serif;
             line-height: 1.5;

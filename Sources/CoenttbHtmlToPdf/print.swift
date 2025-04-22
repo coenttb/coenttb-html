@@ -12,7 +12,7 @@ import Foundation
 extension HTML {
     public func print(
         to: URL,
-        wrapInHtmlDocument: ((Self) -> any HTMLDocument)? = { html in HTMLPreview { html } },
+        wrapInHtmlDocument: ((Self) -> any HTMLDocumentProtocol)? = { html in HTMLDocument { html } },
         configuration: PDFConfiguration = .a4,
         createDirectories: Bool = true
     ) async throws {
@@ -32,7 +32,7 @@ extension HTML {
     public func print(
         title: String,
         to: URL,
-        wrapInHtmlDocument: ((Self) -> any HTMLDocument)? = { html in HTMLPreview { html } },
+        wrapInHtmlDocument: ((Self) -> any HTMLDocumentProtocol)? = { html in HTMLDocument { html } },
         configuration: PDFConfiguration = .a4,
         createDirectories: Bool = true
     ) async throws {
@@ -48,7 +48,7 @@ extension HTML {
     }
 }
 
-extension HTMLDocument {
+extension HTMLDocumentProtocol {
     public func print(
         to: URL,
         configuration: PDFConfiguration = .a4,
@@ -63,7 +63,7 @@ extension HTMLDocument {
     }
 }
 
-extension HTMLDocument {
+extension HTMLDocumentProtocol {
     public func print(
         title: String,
         to: URL,

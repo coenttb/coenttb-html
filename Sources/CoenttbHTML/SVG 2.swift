@@ -9,7 +9,7 @@ private func <| <A, B> (f: (A) -> B, a: A) -> B {
 
 extension Label {
     public init(
-        alignment: VerticalAlign = .center,
+        alignment: VerticalAlign = .middle,
         spacing: Length = 0.25.rem,
         _ title: String,
         icon: SVG
