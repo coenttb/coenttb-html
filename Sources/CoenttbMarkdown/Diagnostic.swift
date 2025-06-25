@@ -1,4 +1,5 @@
 import CoenttbHTML
+import HTML
 
 public struct DiagnosticLevel: Sendable {
     var icon: SVG
@@ -82,11 +83,11 @@ public struct Diagnostic<Message: HTML>: HTML {
             drop-shadow(0 -1px 0 white)
             """
                     )
-                    .width(14.px)
+                    .width(.px(14))
                 }
-                .color(level.iconColor)
+//                .color(level.iconColor)
                 .backgroundColor(level.backgroundColor)
-                .padding(top: 8.px, horizontal: 8.px, bottom: 7.px)
+                .padding(top: .px(8), horizontal: .px(8), bottom: .px(7))
                 
                 div {
                     VStack(spacing: 0.5.rem) {
@@ -95,13 +96,13 @@ public struct Diagnostic<Message: HTML>: HTML {
                     .class("diagnostic")
                 }
                 .backgroundColor(level.detailBackgroundColor)
-                .color(.black.withDarkColor(.white))
-                .grow()
-                .padding(8.px)
+//                .color(.black.withDarkColor(.white))
+//                .grow()
+                .padding(.px(8))
             }
-            .border(.radius(8.px))
-            .border(width: 0.5.px, style: .solid, color: .init(light: .hex("\(level.backgroundColor.light)44")))
-            .border(width: 0.5.px, style: .solid, color: .init(light: .hex("\(level.backgroundColor.dark!)44")), media: .dark)
+            .borderRadius(.uniform(.px(8)))
+            .border(width: .px(0.5), style: .solid, color: .init(light: .hex("\(level.backgroundColor.light)44")))
+            .border(width: .px(0.5), style: .solid, color: .init(light: .hex("\(level.backgroundColor.dark)44")), media: .dark)
             .overflow(.hidden)
         }
         .inlineStyle(
@@ -119,7 +120,7 @@ public struct InlineDiagnostic: HTML {
     let message: String
     
     public var body: some HTML {
-        VStack(alignment: .trailing) {
+        VStack(alignment: .normal) {
             HStack(spacing: 0.05.rem) {
                 div {
                     div {
@@ -134,22 +135,36 @@ public struct InlineDiagnostic: HTML {
             drop-shadow(0 -1px 0 white)
             """
                     )
-                    .width(14.px)
+                    .width(.px(14))
                 }
-                .color(level.iconColor)
+//                .color(level.iconColor)
                 .backgroundColor(level.backgroundColor)
-                .padding(top: 4.px, right: 10.px, bottom: 3.px, left: 10.px)
+                .padding(
+                    top: .px(4),
+                    bottom: .px(3),
+                    left: .px(10),
+                    right: .px(10)
+                )
                 
                 div {
                     HTMLText(message)
                 }
                 .backgroundColor(level.backgroundColor)
-                .color(.black.withDarkColor(.white))
+//                .color(.black.withDarkColor(.white))
                 .attribute("title", message)
                 .inlineStyle("min-width", "0")
                 .inlineStyle("max-width", "500px")
-                .flexItem(grow: 1, shrink: 1, basis: .auto)
-                .padding(top: 3.px, right: 30.px, bottom: 3.px, left: 8.px)
+                .flexItem(
+                    grow: 1,
+                    shrink: 1,
+                    basis: .auto
+                )
+                .padding(
+                    top: .px(3),
+                    bottom: .px(3),
+                    left: .px(8),
+                    right: .px(30),
+                )
                 .inlineStyle("text-overflow", "ellipsis")
                 .overflow(.hidden)
                 .inlineStyle("white-space", "nowrap")
@@ -165,7 +180,7 @@ import SwiftUI
 
 #Preview {
     ForEach(ColorScheme.allCases, id: \.hashValue) { colorScheme in
-        HTMLPreview {
+        HTMLDocument {
             div {
                 style {
             """
@@ -251,7 +266,7 @@ import SwiftUI
                     }
                 }
             }
-            .padding(10.px)
+            .padding(.px(10))
         }
         .environment(\.colorScheme, colorScheme)
     }

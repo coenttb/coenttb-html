@@ -42,7 +42,13 @@ public struct Halftone<Image: HTML>: HTML {
                         blur(\(photoBlur.description))
                     """)
             }
-            .position(.absolute, top: 0, right: 0, bottom: 0, left: 0)
+            .position(
+                .absolute,
+                top: .zero,
+                right: .zero,
+                bottom: .zero,
+                left: .zero
+            )
             .inlineStyle("filter", "contrast(\(lineContrast)%)")
             .overflow(.hidden)
             .content(.text(""), pseudo: .before)
@@ -64,26 +70,24 @@ public struct Halftone<Image: HTML>: HTML {
 }
 
 
-
-
-
 extension HTML {
     @discardableResult
     public func position(
         _ value: CSSPropertyTypes.Position?,
-        top: LengthPercentage?,
-        right: LengthPercentage?,
-        bottom: LengthPercentage?,
-        left: LengthPercentage?,
-        media mediaQuery: MediaQuery? = nil,
+        top: Top?,
+        right: Right?,
+        bottom: Bottom?,
+        left: Left?,
+        media : CSSAtRuleTypes.Media? = nil,
         pre: String? = nil,
         pseudo: Pseudo? = nil
-    ) -> HTMLInlineStyle<Self> {
-        inlineStyle("position", value?.description, media: mediaQuery, pre: pre, pseudo: pseudo)
-            .inlineStyle("top", top?.description, media: mediaQuery, pre: pre, pseudo: pseudo)
-            .inlineStyle("left", left?.description, media: mediaQuery, pre: pre, pseudo: pseudo)
-            .inlineStyle("right", right?.description, media: mediaQuery, pre: pre, pseudo: pseudo)
-            .inlineStyle("bottom", bottom?.description, media: mediaQuery, pre: pre, pseudo: pseudo)
+    ) -> some HTML {
+        self
+            .position(value, media: media, pre: pre, pseudo: pseudo)
+            .top(top, media: media, pre: pre, pseudo: pseudo)
+            .left(left, media: media, pre: pre, pseudo: pseudo)
+            .right(right, media: media, pre: pre, pseudo: pseudo)
+            .bottom(bottom, media: media, pre: pre, pseudo: pseudo)
     }
 }
 

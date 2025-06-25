@@ -1,5 +1,6 @@
 import CoenttbHTML
 import Markdown
+import HTMLElements_PointFreeHTML
 
 public struct HTMLMarkdown: HTML {
     public struct Section {
@@ -35,7 +36,7 @@ public struct HTMLMarkdown: HTML {
     
     public var body: some HTML {
         tag("swift-html-markdown") {
-            VStack(spacing: 0.5.rem) {
+            VStack(spacing: .rem(0.5)) {
                 content
             }
             .inlineStyle(
@@ -78,7 +79,8 @@ private struct HTMLConverter: MarkupVisitor {
             VStack(alignment: .center) {
                 
                 Button(
-                    tag: a,
+                    // THIS IS PROBABLY WRONG
+                    tag: a {},
                     background: .buttonBackground,
                     style: .secondary
                 ) {
@@ -87,7 +89,7 @@ private struct HTMLConverter: MarkupVisitor {
                     }
                 }
                 .href(blockDirective.argumentText.segments.map(\.trimmedText).joined(separator: " "))
-                .margin(vertical: 0.5.rem, horizontal: 0)
+                .margin(vertical: .rem(0.5), horizontal: 0)
             }
             
         case "Comment":
@@ -128,7 +130,7 @@ private struct HTMLConverter: MarkupVisitor {
             .attribute("controls")
             .attribute("playsinline")
             .objectFit(.cover)
-            .margin(bottom: 1.rem)
+            .margin(bottom: .rem(1))
             
         default:
             for child in blockDirective.children {
@@ -139,18 +141,18 @@ private struct HTMLConverter: MarkupVisitor {
     
     @HTMLBuilder
     mutating func visitBlockQuote(_ blockQuote: Markdown.BlockQuote) -> AnyHTML {
-        let aside = Aside(blockQuote)
+        let aside = Markdown.Aside(blockQuote)
         if let level = DiagnosticLevel(aside: aside) {
             Diagnostic(level: level) {
                 for child in aside.content {
                     visit(child)
                 }
             }
-            .padding(horizontal: 1.rem)
+            .padding(vertical: nil, horizontal: .rem(1))
         } else {
             let style = BlockQuoteStyle(blockName: aside.kind.displayName)
             blockquote {
-                VStack(spacing: 0.5.rem) {
+                VStack(spacing: .rem(0.5)) {
                     strong {
                         HTMLText(aside.kind.displayName)
                     }
@@ -163,10 +165,10 @@ private struct HTMLConverter: MarkupVisitor {
             }
             .color(.offBlack.withDarkColor(.offWhite))
             .backgroundColor(style.backgroundColor)
-            .border(.all(width: 2.px, style: .solid, color: style.borderColor))
-            .border(.radius(6.px))
-            .margin(vertical: 0.5.rem, horizontal: 0)
-            .padding(vertical: 1.rem, horizontal: 1.5.rem)
+            .border(width: .px(2), style: .solid, color: style.borderColor)
+            .borderRadius(.uniform(.px(6)))
+            .margin(vertical: .rem(0.5), horizontal: 0)
+            .padding(vertical: .rem(1), horizontal: .rem(1.5))
         }
     }
     
@@ -191,12 +193,12 @@ private struct HTMLConverter: MarkupVisitor {
         }
         .attribute("data-line", language?.dataLine)
         .backgroundColor(.offWhite.withDarkColor(.offBlack))
-        .color(.black.withDarkColor(.gray900))
+        .color(light: .black, dark: .gray900)
         .margin(0)
-        .margin(bottom: 0.5.rem)
+        .margin(.bottom(.rem(0.5)) )
         .overflowX(.auto)
-        .padding(vertical: 1.rem, horizontal: 1.5.rem)
-        .border(.radius(6.px))
+        .padding(vertical: .rem(1), horizontal: .rem(1.5))
+        .borderRadius(.px(6))
     }
     
     @HTMLBuilder
@@ -216,8 +218,8 @@ private struct HTMLConverter: MarkupVisitor {
             .id(id)
             .display(.block)
             .position(.relative)
-            .top((-5).em)
-            .top((-0.5).em, media: .desktop)
+            .top(.em(-5))
+            .top(.em(-0.5), media: .desktop)
             .visibility(.hidden)
         
         div {
@@ -226,7 +228,7 @@ private struct HTMLConverter: MarkupVisitor {
                     visit(child)
                 }
                 
-                Link(href: "#\(id)") {
+                Link(href: .init(value: "#\(id)")) {
                     SVG("Link") {
             """
             <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M432-288H288q-79.68 0-135.84-56.23Q96-400.45 96-480.23 96-560 152.16-616q56.16-56 135.84-56h144v72H288q-50 0-85 35t-35 85q0 50 35 85t85 35h144v72Zm-96-156v-72h288v72H336Zm192 156v-72h144q50 0 85-35t35-85q0-50-35-85t-85-35H528v-72h144q79.68 0 135.84 56.23 56.16 56.22 56.16 136Q864-400 807.84-344 751.68-288 672-288H528Z"/></svg>
@@ -234,20 +236,20 @@ private struct HTMLConverter: MarkupVisitor {
                     }
                 }
                 .linkColor(.gray800.withDarkColor(.gray300))
-                .display(.none)
+                .display(Display.none)
                 .display(.initial, pre: "article div:hover > * >")
                 .left(0)
                 .position(.absolute)
                 .textAlign(.center)
-                .top(2.px, media: .mobile)
-                .width(2.5.rem)
+                .top(.px(2), media: .mobile)
+                .width(.rem(2.5))
             }
             .color(.offBlack.withDarkColor(.offWhite))
         }
-        .margin(left: (-2.25).rem)
-        .margin(left: (-2.5).rem, media: .desktop)
-        .padding(left: 2.25.rem)
-        .padding(left: 2.5.rem, media: .desktop)
+        .margin(left: .rem(-2.25))
+        .margin(left: .rem(-2.5), media: .desktop)
+        .padding(left: .rem(2.25))
+        .padding(left: .rem(2.5), media: .desktop)
         .position(.relative)
         
         let _ = currentSection = (title: heading.plainText, id: id, level: heading.level)
@@ -262,10 +264,17 @@ private struct HTMLConverter: MarkupVisitor {
     mutating func visitImage(_ image: Markdown.Image) -> AnyHTML {
         if let source = image.source {
             VStack(alignment: .center) {
-                Link(href: source) {
-                    Image(source: source, description: image.title ?? "")
-                        .margin(vertical: 0, horizontal: 1.rem)
-                        .border(.radius(6.px))
+                Link(href: .init(value: source)) {
+                    Image(
+                        src: .init(value: source),
+                        alt: .init(value: image.title ?? ""),
+                        loading: nil
+                    )
+                    .margin(
+                        vertical: .rem(0),
+                        horizontal: .rem(1)
+                    )
+                    .borderRadius(.uniform(.px(6)))
                 }
             }
         }
@@ -290,18 +299,18 @@ private struct HTMLConverter: MarkupVisitor {
     
     @HTMLBuilder
     mutating func visitLink(_ link: Markdown.Link) -> AnyHTML {
-        Link(href: link.destination ?? "#") {
+        Link(href: .init(link.destination ?? "#")) {
             for child in link.children {
                 visit(child)
             }
         }
-        .attribute("title", link.title)
+        .attribute(Title.tag, link.title)
     }
     
     @HTMLBuilder
     mutating func visitListItem(_ listItem: Markdown.ListItem) -> AnyHTML {
         li {
-            VStack(spacing: 0.5.rem) {
+            VStack(spacing: .rem(0.5)) {
                 for child in listItem.children {
                     visit(child)
                 }
@@ -316,7 +325,7 @@ private struct HTMLConverter: MarkupVisitor {
                 visit(child)
             }
         }
-        .flexContainer(direction: .column, rowGap: .length(0.5.rem))
+        .flexContainer(direction: .column, rowGap: .length(.rem(0.5)))
     }
     
     @HTMLBuilder
@@ -360,17 +369,27 @@ private struct HTMLConverter: MarkupVisitor {
             if !table.head.isEmpty {
                 thead {
                     tr {
-                        render(tag: th, cells: table.head.cells, columnAlignments: table.columnAlignments)
+                        render(
+                            tag: "th",
+                            cells: table.head.cells,
+                            columnAlignments: table.columnAlignments
+                        )
                     }
                 }
             }
             if !table.body.isEmpty {
+                HTMLEmpty()
                 tbody {
-                    for row in table.body.rows {
+                    HTMLForEach(table.body.rows) { row in
                         tr {
-                            render(tag: td, cells: row.cells, columnAlignments: table.columnAlignments)
+                            render(tag: "td", cells: row.cells, columnAlignments: table.columnAlignments)
                         }
                     }
+//                    for row in table.body.rows {
+//                        tr {
+//                            render(tag: "td", cells: row.cells, columnAlignments: table.columnAlignments)
+//                        }
+//                    }
                 }
             }
         }
@@ -380,7 +399,7 @@ private struct HTMLConverter: MarkupVisitor {
     private mutating func render(
         tag: HTMLTag,
         cells: some Sequence<Markdown.Table.Cell>,
-        columnAlignments: [Table.ColumnAlignment?]
+        columnAlignments: [Markdown.Table.ColumnAlignment?]
     ) -> AnyHTML {
         var column = 0
         for cell in cells {
@@ -409,7 +428,10 @@ private struct HTMLConverter: MarkupVisitor {
         div {
             Divider()
         }
-        .margin(top: 1.rem, bottom: 2.rem)
+        .margin(
+            top: .rem(1),
+            bottom: .rem(2)
+        )
     }
     
     @HTMLBuilder
@@ -419,12 +441,18 @@ private struct HTMLConverter: MarkupVisitor {
                 visit(child)
             }
         }
-        .flexContainer(direction: .column, rowGap: .length(0.5.rem))
-        .margin(vertical: 0)
+        .flexContainer(
+            direction: .column,
+            rowGap: .length(.rem(0.5))
+        )
+        .margin(
+            vertical: 0,
+            horizontal: nil
+        )
     }
 }
 
-extension Table.ColumnAlignment {
+extension Markdown.Table.ColumnAlignment {
     fileprivate var attributeValue: String {
         switch self {
         case .center: "center"
@@ -485,7 +513,7 @@ private func value(forArgument argument: String, block: BlockDirective) -> Strin
 }
 
 extension DiagnosticLevel {
-    fileprivate init?(aside: Aside) {
+    fileprivate init?(aside: Markdown.Aside) {
         switch aside.kind.rawValue {
         case "Error": self = .error
         case "Expected Failure": self = .knownIssue
@@ -538,34 +566,38 @@ public struct Timestamp: HTML {
                     HTMLText(speaker)
                 }
                 .color(.gray500)
-                .font(.size(0.875.rem))
+                .fontSize(.rem(0.875))
                 .lineHeight(1, media: .desktop)
                 .position(.relative, media: .desktop)
                 .inlineStyle("text-transform", "uppercase")
-                .top(0.5.rem, media: .desktop)
+                .top(.rem(0.5), media: .desktop)
             }
             
             let duration = self.duration
             div {
                 div {
-                    Link(href: anchor) {
+                    Link(href: .init(value: anchor)) {
                         HTMLText(formatted())
                     }
                     .attribute("data-timestamp", "\(duration)")
                 }
-                .fontStyle(.body(.small))
+//                .fontStyle(.body(.small))
                 .linkStyle(.init(underline: nil))
                 .dependency(\.color.text.link, .gray800.withDarkColor(.gray300))
                 .id(id)
                 .inlineStyle("font-variant-numeric", "tabular-nums")
                 .lineHeight(3, media: .desktop)
-                .margin(left: (-4).rem, media: .desktop)
+                .margin(left: .rem(-4), media: .desktop)
                 .position(.absolute, media: .desktop)
                 .textAlign(.right, media: .desktop)
-                .width(3.25.rem, media: .desktop)
+                .width(.rem(3.25), media: .desktop)
             }
         }
-        .flexContainer(direction: .columnReverse, rowGap: .length(0.5.rem), media: .mobile)
+        .flexContainer(
+            direction: .columnReverse,
+            rowGap: .length(.rem(0.5)),
+            media: .mobile
+        )
     }
 }
 

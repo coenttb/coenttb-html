@@ -21,8 +21,8 @@ public struct Link<Label: HTML>: HTML {
     public var body: some HTML {
         a(href: href) { label }
             .color(.text.link)
-            .color(.text.link, pseudo: .visited)
-            .color(.text.link, pseudo: .link)
+            .color(HTMLColor.text.link, pseudo: .visited)
+            .color(HTMLColor.text.link, pseudo: .link)
             .textDecoration(linkStyle.underline == true ? .underline : TextDecoration.none, pseudo: .visited)
             .textDecoration(linkStyle.underline == true ? .underline : TextDecoration.none, pseudo: .link)
             .textDecoration(linkStyle.underline == true ? .none : TextDecoration.underline, pseudo: .hover)

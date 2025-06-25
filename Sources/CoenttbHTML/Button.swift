@@ -12,8 +12,8 @@ public struct Button<Tag: HTML, Label: HTML, Icon: HTML>: HTML {
         tag: Tag,
         background: HTMLColor = .buttonBackground,
         style: Button.Style = .default,
-        @HTMLBuilder icon: () -> Icon,
-        @HTMLBuilder label: () -> Label
+        @HTMLBuilder label: () -> Label =  { HTMLEmpty() },
+        @HTMLBuilder icon: () -> Icon = { HTMLEmpty() }
     ) {
         self.tag = tag
         self.icon = icon()
@@ -130,9 +130,11 @@ public struct Button<Tag: HTML, Label: HTML, Icon: HTML>: HTML {
         return tag
             .borderRadius(.uniform(style.cornerRadius))
             .borderStyle(borderStyle)
-            .inlineStyle("border-width", "0px;")
-            .inlineStyle("transition", "background-color 0.3s, box-shadow 0.3s")
+            .borderWidth(.px(0))
             .appearance(Appearance.none)
+            .backgroundColor(backgroundColor)
+            .backgroundColor(backgroundColorHover, pseudo: .hover)
+            .inlineStyle("transition", "background-color 0.3s, box-shadow 0.3s")
             .inlineStyle("box-shadow", "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)")
             .inlineStyle(
                 "box-shadow",
@@ -143,8 +145,6 @@ public struct Button<Tag: HTML, Label: HTML, Icon: HTML>: HTML {
                 boxShadowDark,
                 media: .dark
             )
-            .backgroundColor(backgroundColor)
-            .backgroundColor(backgroundColorHover, pseudo: .hover)
     }
     
     public struct Style: Equatable {

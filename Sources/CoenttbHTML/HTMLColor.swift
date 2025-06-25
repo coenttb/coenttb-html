@@ -229,19 +229,54 @@ extension HTMLColor {
 }
 
 
-extension HTML {
-    @discardableResult
-    @HTMLBuilder
-    func color(
-        _ color: HTMLColor?,
-        media: CSSAtRuleTypes.Media? = nil,
-        pre: String? = nil,
-        pseudo: Pseudo? = nil
-    ) -> some HTML {
-        if let color {
-            self.color(light: color.light, dark: color.dark, media: media, pre: pre, pseudo: pseudo)
-        } else {
-            self
-        }
-    }
-}
+//extension HTML {
+//    @discardableResult
+//    @HTMLBuilder
+//    func color(
+//        _ color: HTMLColor?,
+//        media: CSSAtRuleTypes.Media? = nil,
+//        pre: String? = nil,
+//        pseudo: Pseudo? = nil
+//    ) -> some HTML {
+//        if let color {
+//            self.color(light: color.light, dark: color.dark, media: media, pre: pre, pseudo: pseudo)
+//        } else {
+//            self
+//        }
+//    }
+//}
+
+//
+//extension HTML {
+//    @discardableResult
+//    @HTMLBuilder
+//    @_disfavoredOverload
+//    func backgroundColor(
+//        _ color: HTMLColor?,
+//        media: CSSAtRuleTypes.Media? = nil,
+//        pre: String? = nil,
+//        pseudo: Pseudo? = nil
+//    ) -> some HTML {
+//        fatalError()
+////        if let color {
+////            self.color(light: color.light, dark: color.dark, media: media, pre: pre, pseudo: pseudo)
+////        } else {
+////            self
+////        }
+//    }
+//}
+
+
+//extension HTML {
+//    @discardableResult
+//    @HTMLBuilder
+//    @_disfavoredOverload
+//    public func color2(
+//        _ color: CSSPropertyTypes.Color.WithDarkMode.Color?,
+//        media: CSSAtRuleTypes.Media? = nil,
+//        pre: String? = nil,
+//        pseudo: Pseudo? = nil
+//    ) -> some HTML {
+//        self.color(color.map(CSSPropertyTypes.Color.WithDarkMode.color))
+//    }
+//}

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import HTML
 
 public struct Label<Title: HTML, Icon: HTML>: HTML {
     let alignment: VerticalAlign
