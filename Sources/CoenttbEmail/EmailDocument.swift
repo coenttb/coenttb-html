@@ -17,7 +17,7 @@ public struct TableEmailDocument<Content: HTML>: EmailDocument {
     
     public var body: some HTML {
         
-        style {
+        Style {
             """
             body, table, td, div, p, a {
                 -webkit-text-size-adjust: 100%;
@@ -38,11 +38,11 @@ public struct TableEmailDocument<Content: HTML>: EmailDocument {
         span {
             HTMLText(preheader)
         }
-        .color(.transparent)
-        .display(.none)
-        .opacity("0")
-        .width(0)
-        .height(0)
+//        .color(.transparent)
+        .display(Display.none)
+        .opacity(0)
+        .width(.zero)
+        .height(.zero)
         .maxWidth(0)
         .maxHeight(0)
         .overflow(.hidden)
@@ -57,8 +57,8 @@ public struct TableEmailDocument<Content: HTML>: EmailDocument {
         .attribute("border-spacing", "0 0.5rem")
         .attribute("align", "center")
         .display(.block)
-        .width(100.percent)
-        .maxWidth(100.percent)
+        .width(.percent(100))
+        .maxWidth(.percent(100))
         .margin(vertical: 0, horizontal: .auto)
         .inlineStyle("clear", "both")
     }
@@ -89,14 +89,13 @@ private struct Email: HTML {
         html {
             tag("head") {
                 BaseStyles()
-                style {
+                Style {
                     stylesheet
                 }
-                meta()
-                    .attribute("charset", "UTF-8")
-                meta()
-                    .attribute("name", "viewport")
-                    .attribute("content", "width=device-width, initial-scale=1.0, viewport-fit=cover")
+                meta(charset: .utf8) {}
+                meta(
+                    name: "viewport", content: "width=device-width, initial-scale=1.0, viewport-fit=cover"
+                ) {}
             }
             tag("body") {
                 HTMLRaw(bodyBytes)

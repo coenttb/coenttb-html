@@ -77,11 +77,20 @@ private struct Visitor: MarkupVisitor {
     
     @HTMLBuilder
     mutating func visitImage(_ image: Markdown.Image) -> AnyHTML {
-        if let source = image.source {
-            Link(href: source) {
-                Image(source: source, description: image.title ?? "")
+        if
+            let source = image.source {
+            Link(href: .init(value: source)) {
+                img(src: .init(value: source), alt: .init(image.title ?? ""))
                     .inlineStyle("margin", "0 1rem")
                     .inlineStyle("border-radius", "6px")
+//                Image(source: source)
+                
+//                HTML.Image(
+//                    source: source,
+//                    description: image.title ?? ""
+//                )
+//                    .inlineStyle("margin", "0 1rem")
+//                    .inlineStyle("border-radius", "6px")
             }
         }
     }
@@ -105,7 +114,7 @@ private struct Visitor: MarkupVisitor {
     
     @HTMLBuilder
     mutating func visitLink(_ link: Markdown.Link) -> AnyHTML {
-        Link(href: link.destination ?? "#") {
+        Link(href: .init(link.destination ?? "#")) {
             for child in link.children {
                 visit(child)
             }
@@ -154,7 +163,7 @@ private struct Visitor: MarkupVisitor {
             }
         }
         .color(.text.primary)
-        .fontStyle(.body(.regular))
+        .fontStyle(.normal)
         .inlineStyle("line-height", "1.5")
         .inlineStyle("padding", "0 0 0.5rem 0")
         .inlineStyle("margin", "0")
@@ -189,15 +198,15 @@ private struct Visitor: MarkupVisitor {
             if !table.head.isEmpty {
                 thead {
                     tr {
-                        render(tag: th, cells: table.head.cells, columnAlignments: table.columnAlignments)
+                        render(tag: "th", cells: table.head.cells, columnAlignments: table.columnAlignments)
                     }
                 }
             }
             if !table.body.isEmpty {
                 tbody {
-                    for row in table.body.rows {
+                    HTMLForEach(table.body.rows) { row in
                         tr {
-                            render(tag: td, cells: row.cells, columnAlignments: table.columnAlignments)
+                            render(tag: "td", cells: row.cells, columnAlignments: table.columnAlignments)
                         }
                     }
                 }
