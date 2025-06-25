@@ -75,7 +75,7 @@ public struct Diagnostic<Message: HTML>: HTML {
                         level.icon
                     }
                     .inlineStyle(
-                        "filter",
+                        Filter.property,
             """
             drop-shadow(1px 0 0 white) \
             drop-shadow(-1px 0 0 white) \
@@ -85,7 +85,7 @@ public struct Diagnostic<Message: HTML>: HTML {
                     )
                     .width(.px(14))
                 }
-//                .color(level.iconColor)
+                .color(level.iconColor)
                 .backgroundColor(level.backgroundColor)
                 .padding(top: .px(8), horizontal: .px(8), bottom: .px(7))
                 
@@ -96,8 +96,8 @@ public struct Diagnostic<Message: HTML>: HTML {
                     .class("diagnostic")
                 }
                 .backgroundColor(level.detailBackgroundColor)
-//                .color(.black.withDarkColor(.white))
-//                .grow()
+                .color(.black.withDarkColor(.white))
+                .flexGrow()
                 .padding(.px(8))
             }
             .borderRadius(.uniform(.px(8)))
@@ -137,7 +137,7 @@ public struct InlineDiagnostic: HTML {
                     )
                     .width(.px(14))
                 }
-//                .color(level.iconColor)
+                .color(level.iconColor)
                 .backgroundColor(level.backgroundColor)
                 .padding(
                     top: .px(4),
@@ -150,7 +150,7 @@ public struct InlineDiagnostic: HTML {
                     HTMLText(message)
                 }
                 .backgroundColor(level.backgroundColor)
-//                .color(.black.withDarkColor(.white))
+                .color(.black.withDarkColor(.white))
                 .attribute("title", message)
                 .inlineStyle("min-width", "0")
                 .inlineStyle("max-width", "500px")
