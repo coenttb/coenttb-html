@@ -79,8 +79,7 @@ private struct HTMLConverter: MarkupVisitor {
             VStack(alignment: .center) {
                 
                 Button(
-                    // THIS IS PROBABLY WRONG
-                    tag: a {},
+                    button: .init(),
                     background: .buttonBackground,
                     style: .secondary
                 ) {

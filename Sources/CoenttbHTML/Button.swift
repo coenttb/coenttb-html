@@ -1,21 +1,21 @@
 import Foundation
 import HTML
 
-public struct Button<Tag: HTML, Label: HTML, Icon: HTML>: HTML {
-    let tag: Tag
+public struct Button<Label: HTML, Icon: HTML>: HTML {
+    let button: HTMLElementTypes.Button
     let icon: Icon?
     let label: Label
     let background: HTMLColor
     let style: Button.Style
     
     public init(
-        tag: Tag,
+        button: HTMLElementTypes.Button,
         background: HTMLColor = .buttonBackground,
         style: Button.Style = .default,
         @HTMLBuilder label: () -> Label =  { HTMLEmpty() },
         @HTMLBuilder icon: () -> Icon = { HTMLEmpty() }
     ) {
-        self.tag = tag
+        self.button = button
         self.icon = icon()
         self.label = label()
         self.background = background
@@ -36,30 +36,32 @@ public struct Button<Tag: HTML, Label: HTML, Icon: HTML>: HTML {
     //    }
     
     public var body: some HTML {
-        HTMLGroup {
-            if let icon = icon {
-                CoenttbHTML.Label {
-                    icon
-                } title: {
-                    label
-                }
-            } else {
-                label
-            }
-        }
-        .padding(
-            vertical: style.verticalPadding,
-            horizontal: style.horizontalPadding
-        )
-        .display(.flex)
-        .alignItems(.center)
-        .textDecoration(TextDecoration.none)
-        .inlineStyle("transition", "background-color 0.3s")
-        .inlineStyle("user-select", "none")
-        .inlineStyle("-webkit-user-select", "none")
-        .inlineStyle("-moz-user-select", "none")
-        .inlineStyle("-ms-user-select", "none")
-        .cursor(.pointer)
+        // UNSURE ABOUT THIS
+        
+//        HTMLGroup {
+//            if let icon = icon {
+//                CoenttbHTML.Label {
+//                    icon
+//                } title: {
+//                    label
+//                }
+//            } else {
+//                label
+//            }
+//        }
+//        .padding(
+//            vertical: style.verticalPadding,
+//            horizontal: style.horizontalPadding
+//        )
+//        .display(.flex)
+//        .alignItems(.center)
+//        .textDecoration(TextDecoration.none)
+//        .inlineStyle("transition", "background-color 0.3s")
+//        .inlineStyle("user-select", "none")
+//        .inlineStyle("-webkit-user-select", "none")
+//        .inlineStyle("-moz-user-select", "none")
+//        .inlineStyle("-ms-user-select", "none")
+//        .cursor(.pointer)
         
         var borderColor: HTMLColor? {
             switch self.style {
@@ -127,7 +129,7 @@ public struct Button<Tag: HTML, Label: HTML, Icon: HTML>: HTML {
             }
         }
         
-        return tag
+        return button {} 
             .borderRadius(.uniform(style.cornerRadius))
             .borderStyle(borderStyle)
             .borderWidth(.px(0))
