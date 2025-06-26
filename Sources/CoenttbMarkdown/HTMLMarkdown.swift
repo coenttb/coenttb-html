@@ -580,7 +580,7 @@ public struct Timestamp: HTML {
                     }
                     .attribute("data-timestamp", "\(duration)")
                 }
-//                .fontStyle(.body(.small))
+                .font(.body(.small))
                 .linkStyle(.init(underline: nil))
                 .dependency(\.color.text.link, .gray800.withDarkColor(.gray300))
                 .id(id)
