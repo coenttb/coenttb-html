@@ -377,7 +377,6 @@ private struct HTMLConverter: MarkupVisitor {
                 }
             }
             if !table.body.isEmpty {
-                HTMLEmpty()
                 tbody {
                     HTMLForEach(table.body.rows) { row in
                         tr {
