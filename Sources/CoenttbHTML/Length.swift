@@ -46,3 +46,31 @@ extension LengthPercentage {
     public static let primary: Self = root
     public static let secondary: Self = .rem(0.875)
 }
+
+extension LengthPercentageConvertible {
+    public static var extraSmall:Self {
+        .lengthPercentage(.extraSmall)
+    }
+    public static var small:Self {
+        .lengthPercentage(.small)
+    }
+    public static var medium:Self {
+        .lengthPercentage(.medium)
+    }
+    public static var large:Self {
+        .lengthPercentage(.large)
+    }
+    public static var extraLarge:Self {
+        .lengthPercentage(.extraLarge)
+    }
+    
+    public static var root: Self{
+        .lengthPercentage(.root)
+    }
+    public static var primary: Self{
+        .lengthPercentage(.primary)
+    }
+    public static var secondary: Self{
+        .lengthPercentage(.secondary)
+    }
+}
