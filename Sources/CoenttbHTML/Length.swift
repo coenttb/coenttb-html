@@ -34,3 +34,15 @@ extension Length {
     public static let caption = 0.75.rem
     public static let caption2 = 0.7.rem
 }
+
+extension LengthPercentage {
+    public static let extraSmall:Self = .rem(0.5)
+    public static let small:Self = .rem(1)
+    public static let medium:Self = .rem(2)
+    public static let large:Self = .rem(4)
+    public static let extraLarge:Self = .rem(8)
+    
+    public static let root: Self = .rem(1)
+    public static let primary: Self = root
+    public static let secondary: Self = .rem(0.875)
+}
