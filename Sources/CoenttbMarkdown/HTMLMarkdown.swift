@@ -194,7 +194,7 @@ private struct HTMLConverter: MarkupVisitor {
         .backgroundColor(.offWhite.withDarkColor(.offBlack))
         .color(light: .black, dark: .gray900)
         .margin(0)
-        .margin(.bottom(.rem(0.5)) )
+        .margin(bottom: .rem(0.5))
         .overflowX(.auto)
         .padding(vertical: .rem(1), horizontal: .rem(1.5))
         .borderRadius(.px(6))
