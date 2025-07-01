@@ -12,8 +12,14 @@ public struct Header<Content: HTML>: HTML {
     public var body: some HTML {
         tag("h\(size)") { content }
         .margin(0)
-        .margin(.top(marginTop), pseudo: .not(.firstChild))
-        .margin(.bottom(marginBottom), pseudo: .not(.lastChild))
+        .margin(
+            top: marginTop,
+            pseudo: .not(.firstChild)
+        )
+        .margin(
+            bottom: marginBottom,
+            pseudo: .not(.lastChild)
+        )
         .fontSize(fontSize)
         .fontWeight(700)
         .lineHeight(lineHeight)
