@@ -239,7 +239,7 @@ private struct HTMLConverter: MarkupVisitor {
                 .display(.initial, pre: "article div:hover > * >")
                 .left(0)
                 .position(.absolute)
-                .textAlign(.center)
+//                .textAlign(.center)
                 .top(.px(2), media: .mobile)
                 .width(.rem(2.5))
             }
