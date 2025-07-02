@@ -324,7 +324,10 @@ private struct HTMLConverter: MarkupVisitor {
                 visit(child)
             }
         }
-        .flexContainer(direction: .column, rowGap: .length(.rem(0.5)))
+        .flexContainer(
+            direction: .column,
+            rowGap: .rem(0.5)
+        )
     }
     
     @HTMLBuilder

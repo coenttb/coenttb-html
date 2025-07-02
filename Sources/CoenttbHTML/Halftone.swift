@@ -20,14 +20,14 @@ public struct Halftone<Image: HTML>: HTML {
     let blendMode: CSSPropertyTypes.MixBlendMode
     let rotation: Angle
     let image: Image
+    let imageConfig: (Image) -> any HTML = { $0 }
 
     @Dependency(\.objectStyle.position) var objectPosition
 
     public var body: some HTML {
         div {
             div {
-                image
-                    .objectPosition(objectPosition)
+                AnyHTML(imageConfig(image))
                     .position(.absolute)
                     .top(0)
                     .left(0)
