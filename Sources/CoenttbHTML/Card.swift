@@ -26,7 +26,7 @@ public struct Card<Content: HTML, Header: HTML, Footer: HTML>: HTML {
             
             VStack {
                 VStack(spacing: 0.rem) { content }
-                    .flexGrow(nil)
+                    .flexGrow()
                 
                 footer
             }
