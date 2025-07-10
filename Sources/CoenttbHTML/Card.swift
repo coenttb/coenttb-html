@@ -30,7 +30,7 @@ public struct Card<Content: HTML, Header: HTML, Footer: HTML>: HTML {
                 
                 footer
             }
-            .flexGrow(nil)
+            .flexGrow()
             .padding(top: .rem(0.5), horizontal: .rem(1.5), bottom: .rem(1.5))
         }
         .border(
