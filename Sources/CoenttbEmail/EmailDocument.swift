@@ -100,6 +100,8 @@ private struct Email: HTML {
             tag("body") {
                 HTMLRaw(bodyBytes)
             }
+            .dir(.auto)
+            .style("overflow-wrap: break-word; -webkit-nbsp-mode: space; line-break: after-white-space;")
         }
         .attribute("xmlns", "http://www.w3.org/1999/xhtml")
     }
