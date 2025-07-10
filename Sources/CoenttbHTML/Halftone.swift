@@ -11,28 +11,28 @@ import Dependencies
 
 public struct Halftone<Image: HTML>: HTML {
     let grayscale: String
-    let dotSize: LengthPercentage
+    let dotSize: Length
     let lineColor: HTMLColor
     let lineContrast: Int
     let photoBrightness: Int
     let photoContrast: Int
-    let photoBlur: CSSPropertyTypes.Length
-    let blendMode: CSSPropertyTypes.MixBlendMode
-    let rotation: Angle
+    let photoBlur: Length
+    let blendMode: MixBlendMode
+    let rotationAngle: Int
     let image: Image
-    let imageConfig: (Image) -> any HTML = { $0 }
 
     @Dependency(\.objectStyle.position) var objectPosition
 
     public var body: some HTML {
         div {
             div {
-                AnyHTML(imageConfig(image))
+                image
+                    .objectPosition(objectPosition)
                     .position(.absolute)
                     .top(0)
                     .left(0)
-                    .width(.percentage(100))
-                    .height(.percentage(100))
+                    .width(.percent(100))
+                    .height(.percent(100))
                     .objectFit(.cover)
                     .mixBlendMode(blendMode)
                     .inlineStyle("filter", """
@@ -49,10 +49,14 @@ public struct Halftone<Image: HTML>: HTML {
                 bottom: .zero,
                 left: .zero
             )
+            .position(.absolute)
+            .top(.zero)
+            .right(.zero)
+            .bottom(.zero)
+            .left(.zero)
             .inlineStyle("filter", "contrast(\(lineContrast)%)")
             .overflow(.hidden)
-            .content(.text(""), pseudo: .before)
-            .content(.text(""))
+            .inlineStyle("content", "''", pseudo: .before)
             .position(
                 .absolute,
                 top: .percent(-50),
@@ -61,9 +65,9 @@ public struct Halftone<Image: HTML>: HTML {
                 left: .percent(-50),
                 pseudo: .before
             )
-            .inlineStyle("background", "radial-gradient(circle at center, \(lineColor.light.description), \(lineColor.dark))", pseudo: .before)
-            .backgroundSize(.size(dotSize, dotSize))
-            .transform(.rotate(rotation), pseudo: .before)
+            .inlineStyle("background", "radial-gradient(circle at center, \(lineColor.light.description), \(lineColor.dark.description))", pseudo: .before)
+            .inlineStyle("background-size", "\(dotSize.description) \(dotSize.description)", pseudo: .before)
+            .transform("rotate(\(rotationAngle)deg)", pseudo: .before)
             
         }
     }
@@ -71,37 +75,16 @@ public struct Halftone<Image: HTML>: HTML {
 
 
 extension HTML {
-    @discardableResult
-    public func position(
-        _ value: CSSPropertyTypes.Position?,
-        top: Top?,
-        right: Right?,
-        bottom: Bottom?,
-        left: Left?,
-        media : CSSAtRuleTypes.Media? = nil,
-        pre: String? = nil,
-        pseudo: Pseudo? = nil
-    ) -> some HTML {
-        self
-            .position(value, media: media, pre: pre, pseudo: pseudo)
-            .top(top, media: media, pre: pre, pseudo: pseudo)
-            .left(left, media: media, pre: pre, pseudo: pseudo)
-            .right(right, media: media, pre: pre, pseudo: pseudo)
-            .bottom(bottom, media: media, pre: pre, pseudo: pseudo)
-    }
-}
-
-extension HTML {
     public func halftone(
         grayscale: String = "0",
-        dotSize: LengthPercentage = .em(0.3),
-        lineColor: HTMLColor,
+        dotSize: Length = .em(0.3),
+        lineColor: HTMLColor = .offBlack.withDarkColor(.offWhite),
         lineContrast: Int = 2000,
         photoBrightness: Int = 100,
         photoContrast: Int = 100,
-        photoBlur: CSSPropertyTypes.Length = .px(1),
-        blendMode: CSSPropertyTypes.MixBlendMode = .hardLight,
-        rotation: Angle = 20
+        photoBlur: Length = .px(1),
+        blendMode: MixBlendMode = .hardLight,
+        rotationAngle: Int = 20
     ) -> some HTML {
         Halftone(
             grayscale: grayscale,
@@ -112,8 +95,45 @@ extension HTML {
             photoContrast: photoContrast,
             photoBlur: photoBlur,
             blendMode: blendMode,
-            rotation: rotation,
+            rotationAngle: rotationAngle,
             image: self
         )
     }
 }
+
+
+#if DEBUG && canImport(SwiftUI)
+import SwiftUI
+#Preview {
+    HTMLDocument {
+        div {
+            // Empty div with background styling
+        }
+        .width(.px(300))
+        .height(.px(300))
+        .inlineStyle("background", "linear-gradient(45deg, #ff6b6b, #4ecdc4)")
+        .halftone(
+//            dotSize: .px(4),
+//            lineColor: .black
+        )
+    }
+}
+
+#Preview {
+    HTMLDocument {
+        HTMLText(
+            try! String(
+                HTMLDocument {
+                    div {
+                        // Empty div with background styling
+                    }
+                    .halftone()
+                    .width(.px(300))
+                    .height(.px(300))
+                    .inlineStyle("background", "linear-gradient(45deg, #ff6b6b, #4ecdc4)")
+                }
+            )
+        )
+    }
+}
+#endif
