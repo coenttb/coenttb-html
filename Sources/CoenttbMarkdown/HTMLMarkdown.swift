@@ -1,6 +1,5 @@
 import CoenttbHTML
 import Markdown
-import HTMLElements_PointFreeHTML
 
 public struct HTMLMarkdown: HTML {
     public struct Section {
@@ -188,10 +187,10 @@ private struct HTMLConverter: MarkupVisitor {
                 HTMLText(codeBlock.code)
             }
             .attribute("class", language?.class)
-            .linkUnderline(true)
+//            .linkUnderline(true)
         }
         .attribute("data-line", language?.dataLine)
-        .backgroundColor(.offWhite.withDarkColor(.offBlack))
+//        .backgroundColor(.offWhite.withDarkColor(.offBlack))
         .color(light: .black, dark: .gray900)
         .margin(0)
         .margin(bottom: .rem(0.5))

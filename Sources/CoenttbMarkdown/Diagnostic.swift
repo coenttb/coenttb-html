@@ -1,4 +1,3 @@
-import CoenttbHTML
 import HTML
 
 public struct DiagnosticLevel: Sendable {
@@ -96,7 +95,7 @@ public struct Diagnostic<Message: HTML>: HTML {
                     .class("diagnostic")
                 }
                 .backgroundColor(level.detailBackgroundColor)
-                .color(.black.withDarkColor(.white))
+//                .color(.black.withDarkColor(.white))
                 .flexGrow()
                 .padding(.px(8))
             }
@@ -150,7 +149,7 @@ public struct InlineDiagnostic: HTML {
                     HTMLText(message)
                 }
                 .backgroundColor(level.backgroundColor)
-                .color(.black.withDarkColor(.white))
+//                .color(.black.withDarkColor(.white))
                 .attribute("title", message)
                 .inlineStyle("min-width", "0")
                 .inlineStyle("max-width", "500px")

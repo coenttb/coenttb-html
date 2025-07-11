@@ -6,20 +6,17 @@
 //
 
 import HtmlToPdf
-import CoenttbHTML
+import HTML
 import Foundation
 
 extension HTML {
     public func print(
         to: URL,
-        wrapInHtmlDocument: ((Self) -> any HTMLDocumentProtocol)? = { html in HTMLDocument { html } },
+        encoding: String.Encoding = .utf8,
         configuration: PDFConfiguration = .a4,
         createDirectories: Bool = true
     ) async throws {
-        
-        let `self`: any HTML = wrapInHtmlDocument.map { $0(self) } ?? self
-        
-        try await String(decoding: `self`.render(), as: UTF8.self)
+        try await String(self, encoding: encoding)
             .print(
                 to: to,
                 configuration: configuration,
@@ -32,13 +29,11 @@ extension HTML {
     public func print(
         title: String,
         to: URL,
-        wrapInHtmlDocument: ((Self) -> any HTMLDocumentProtocol)? = { html in HTMLDocument { html } },
+        encoding: String.Encoding = .utf8,
         configuration: PDFConfiguration = .a4,
         createDirectories: Bool = true
     ) async throws {
-        let `self`: any HTML = wrapInHtmlDocument.map { $0(self) } ?? self
-        
-        try await String(decoding: `self`.render(), as: UTF8.self)
+        try await String(self, encoding: encoding)
             .print(
                 title: title,
                 to: to,
@@ -51,10 +46,11 @@ extension HTML {
 extension HTMLDocumentProtocol {
     public func print(
         to: URL,
+        encoding: String.Encoding = .utf8,
         configuration: PDFConfiguration = .a4,
         createDirectories: Bool = true
     ) async throws {
-        try await String(decoding: self.render(), as: UTF8.self)
+        try await String(self, encoding: encoding)
             .print(
                 to: to,
                 configuration: configuration,
@@ -67,13 +63,11 @@ extension HTMLDocumentProtocol {
     public func print(
         title: String,
         to: URL,
+        encoding: String.Encoding = .utf8,
         configuration: PDFConfiguration = .a4,
         createDirectories: Bool = true
     ) async throws {
-        
-        let string = String(decoding: `self`.render(), as: UTF8.self)
-        
-        try await string
+        try await String(self, encoding: encoding)
             .print(
                 title: title,
                 to: to,
