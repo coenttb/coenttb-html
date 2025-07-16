@@ -8,7 +8,7 @@ public struct Header<Content: HTML>: HTML {
         self.size = size
         self.content = content()
     }
-    
+
     public var body: some HTML {
         tag("h\(size)") { content }
         .margin(0)
@@ -24,7 +24,7 @@ public struct Header<Content: HTML>: HTML {
         .fontWeight(700)
         .lineHeight(lineHeight)
     }
-    
+
     var fontSize: CSSPropertyTypes.FontSize {
         switch size {
         case 1: .rem(4)

@@ -1,12 +1,12 @@
-import Dependencies
 import CoenttbHTML
+import Dependencies
 
 public protocol EmailDocument: HTML {}
 
 public struct TableEmailDocument<Content: HTML>: EmailDocument {
     let content: Content
     let preheader: String
-    
+
     public init(
         preheader: String = "",
         @HTMLBuilder content: () -> Content
@@ -14,9 +14,9 @@ public struct TableEmailDocument<Content: HTML>: EmailDocument {
         self.content = content()
         self.preheader = preheader
     }
-    
+
     public var body: some HTML {
-        
+
         Style {
             """
             body, table, td, div, p, a {
@@ -25,7 +25,7 @@ public struct TableEmailDocument<Content: HTML>: EmailDocument {
                 margin: 0;
                 padding: 0;
             }
-            
+
             @media (prefers-color-scheme: dark) {
                 body, table, td, div {
                     background-color: #121212 !important;
@@ -34,7 +34,7 @@ public struct TableEmailDocument<Content: HTML>: EmailDocument {
             }
             """
         }
-        
+
         span {
             HTMLText(preheader)
         }
@@ -46,7 +46,7 @@ public struct TableEmailDocument<Content: HTML>: EmailDocument {
         .maxWidth(0)
         .maxHeight(0)
         .overflow(.hidden)
-        
+
         table {
             content
         }
@@ -63,7 +63,6 @@ public struct TableEmailDocument<Content: HTML>: EmailDocument {
         .inlineStyle("clear", "both")
     }
 }
-
 
 extension EmailDocument {
     public static func _render(_ html: Self, into printer: inout HTMLPrinter) {
@@ -84,7 +83,7 @@ extension EmailDocument {
 private struct Email: HTML {
     let bodyBytes: ContiguousArray<UInt8>
     let stylesheet: String
-    
+
     var body: some HTML {
         html {
             tag("head") {

@@ -228,8 +228,7 @@ extension HTMLColor {
     public static let brown900: Self = .init(light: .brown900, dark: .hex("553000"))
 }
 
-
-//extension HTML {
+// extension HTML {
 //    @discardableResult
 //    @HTMLBuilder
 //    func color(
@@ -244,10 +243,10 @@ extension HTMLColor {
 //            self
 //        }
 //    }
-//}
+// }
 
 //
-//extension HTML {
+// extension HTML {
 //    @discardableResult
 //    @HTMLBuilder
 //    @_disfavoredOverload
@@ -264,10 +263,9 @@ extension HTMLColor {
 ////            self
 ////        }
 //    }
-//}
+// }
 
-
-//extension HTML {
+// extension HTML {
 //    @discardableResult
 //    @HTMLBuilder
 //    @_disfavoredOverload
@@ -279,4 +277,4 @@ extension HTMLColor {
 //    ) -> some HTML {
 //        self.color(color.map(CSSPropertyTypes.Color.WithDarkMode.color))
 //    }
-//}
+// }

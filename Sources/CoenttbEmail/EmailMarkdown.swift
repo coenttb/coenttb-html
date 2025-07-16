@@ -13,7 +13,7 @@ import CoenttbHTML
 public struct EmailMarkdown: HTML {
     public let markdown: String
     public let content: AnyHTML
-    
+
     public init(
         @StringBuilder _ markdown: () -> String
     ) {
@@ -21,7 +21,7 @@ public struct EmailMarkdown: HTML {
         var visitor = Visitor()
         self.content = visitor.visit(Document(parsing: self.markdown, options: .parseBlockDirectives))
     }
-    
+
     public var body: some HTML {
         content
     }
@@ -29,27 +29,27 @@ public struct EmailMarkdown: HTML {
 
 private struct Visitor: MarkupVisitor {
     typealias Result = AnyHTML
-    
+
     @HTMLBuilder
     mutating func defaultVisit(_ markup: any Markup) -> AnyHTML {
         for child in markup.children {
             visit(child)
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitBlockDirective(_ blockDirective: Markdown.BlockDirective) -> AnyHTML {
         switch blockDirective.name {
         case "Comment":
             HTMLEmpty()
-            
+
         default:
             for child in blockDirective.children {
                 visit(child)
             }
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitEmphasis(_ emphasis: Markdown.Emphasis) -> AnyHTML {
         em {
@@ -58,7 +58,7 @@ private struct Visitor: MarkupVisitor {
             }
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitHeading(_ heading: Markdown.Heading) -> AnyHTML {
         Header(heading.level + 2) {
@@ -70,12 +70,12 @@ private struct Visitor: MarkupVisitor {
         .inlineStyle("padding", "1rem 0 0.5rem 0")
         .inlineStyle("position", "relative")
     }
-    
+
     @HTMLBuilder
     mutating func visitHTMLBlock(_ html: Markdown.HTMLBlock) -> AnyHTML {
         HTMLRaw(html.rawHTML)
     }
-    
+
     @HTMLBuilder
     mutating func visitImage(_ image: Markdown.Image) -> AnyHTML {
         if
@@ -85,7 +85,7 @@ private struct Visitor: MarkupVisitor {
                     .inlineStyle("margin", "0 1rem")
                     .inlineStyle("border-radius", "6px")
 //                Image(source: source)
-                
+
 //                HTML.Image(
 //                    source: source,
 //                    description: image.title ?? ""
@@ -95,24 +95,24 @@ private struct Visitor: MarkupVisitor {
             }
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitInlineCode(_ inlineCode: Markdown.InlineCode) -> AnyHTML {
         code {
             HTMLText(inlineCode.code)
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitInlineHTML(_ inlineHTML: Markdown.InlineHTML) -> AnyHTML {
         HTMLRaw(inlineHTML.rawHTML)
     }
-    
+
     @HTMLBuilder
     mutating func visitLineBreak(_ lineBreak: Markdown.LineBreak) -> AnyHTML {
         br()
     }
-    
+
     @HTMLBuilder
     mutating func visitLink(_ link: Markdown.Link) -> AnyHTML {
         Link(href: .init(link.destination ?? "#")) {
@@ -122,7 +122,7 @@ private struct Visitor: MarkupVisitor {
         }
         .attribute("title", link.title)
     }
-    
+
     @HTMLBuilder
     mutating func visitListItem(_ listItem: Markdown.ListItem) -> AnyHTML {
         li {
@@ -131,7 +131,7 @@ private struct Visitor: MarkupVisitor {
             }
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitOrderedList(_ orderedList: Markdown.OrderedList) -> AnyHTML {
         ol {
@@ -143,7 +143,7 @@ private struct Visitor: MarkupVisitor {
         .inlineStyle("margin-top", "0")
         .inlineStyle("padding", "0 0 1rem 1rem")
     }
-    
+
     @HTMLBuilder
     mutating func visitUnorderedList(_ unorderedList: Markdown.UnorderedList) -> AnyHTML {
         ul {
@@ -155,7 +155,7 @@ private struct Visitor: MarkupVisitor {
         .inlineStyle("margin-top", "0")
         .inlineStyle("padding", "0.5rem 0 0.5rem 1rem")
     }
-    
+
     @HTMLBuilder
     mutating func visitParagraph(_ paragraph: Markdown.Paragraph) -> AnyHTML {
         p {
@@ -169,12 +169,12 @@ private struct Visitor: MarkupVisitor {
         .inlineStyle("padding", "0 0 0.5rem 0")
         .inlineStyle("margin", "0")
     }
-    
+
     @HTMLBuilder
     mutating func visitSoftBreak(_ softBreak: Markdown.SoftBreak) -> AnyHTML {
         " "
     }
-    
+
     @HTMLBuilder
     mutating func visitStrikethrough(_ strikethrough: Markdown.Strikethrough) -> AnyHTML {
         s {
@@ -183,7 +183,7 @@ private struct Visitor: MarkupVisitor {
             }
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitStrong(_ strong: Markdown.Strong) -> AnyHTML {
         tag("strong") {
@@ -192,7 +192,7 @@ private struct Visitor: MarkupVisitor {
             }
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitTable(_ table: Markdown.Table) -> AnyHTML {
         tag("table") {
@@ -214,7 +214,7 @@ private struct Visitor: MarkupVisitor {
             }
         }
     }
-    
+
     @HTMLBuilder
     private mutating func render(
         tag: HTMLTag,
@@ -232,17 +232,17 @@ private struct Visitor: MarkupVisitor {
                 .attribute("align", columnAlignments[column]?.attributeValue)
                 .attribute("colspan", cell.colspan == 1 ? nil : "\(cell.colspan)")
                 .attribute("rowspan", cell.rowspan == 1 ? nil : "\(cell.rowspan)")
-                
-                let _ = column += Int(cell.colspan)
+
+                _ = column += Int(cell.colspan)
             }
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitText(_ text: Markdown.Text) -> AnyHTML {
         HTMLText(text.string)
     }
-    
+
     @HTMLBuilder
     mutating func visitThematicBreak(_ thematicBreak: Markdown.ThematicBreak) -> AnyHTML {
         div {
@@ -267,10 +267,9 @@ extension HTMLBuilder {
     fileprivate static func buildExpression(_ expression: any HTML) -> AnyHTML {
         AnyHTML(expression)
     }
-    
+
     @_disfavoredOverload
     fileprivate static func buildFinalResult(_ component: some HTML) -> AnyHTML {
         AnyHTML(component)
     }
 }
-

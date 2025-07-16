@@ -5,8 +5,8 @@
 //  Created by Coen ten Thije Boonkkamp on 17/04/2025.
 //
 
-//import Foundation
-//import HTML
+// import Foundation
+// import HTML
 //
 //
 //
@@ -15,7 +15,7 @@
 //
 //
 //
-//public struct HTMLForEach<Content: HTML>: HTML {
+// public struct HTMLForEach<Content: HTML>: HTML {
 //    /// The array of HTML content generated from the collection.
 //    let content: _HTMLArray<Content>
 //    
@@ -35,4 +35,4 @@
 //    public var body: some HTML {
 //        content
 //    }
-//}
+// }

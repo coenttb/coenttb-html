@@ -6,7 +6,7 @@ extension String {
         walker.visit(markup)
         self = walker.text
     }
-    
+
     public init(stripping markdown: String) {
         self.init(stripping: Document(parsing: markdown))
     }

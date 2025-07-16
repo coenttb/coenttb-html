@@ -6,18 +6,18 @@ public struct Link<Label: HTML>: HTML {
     @Dependency(\.linkStyle) var linkStyle
     let label: Label
     let href: Href?
-    
+
     public init(href: Href?, @HTMLBuilder label: () -> Label) {
         self.href = href
         self.label = label()
     }
-    
+
     public init(_ title: String, href: Href?) where Label == HTMLText {
         self.init(href: href) {
             HTMLText(title)
         }
     }
-    
+
     public var body: some HTML {
         a(href: href) { label }
             .color(.text.link)
@@ -28,8 +28,6 @@ public struct Link<Label: HTML>: HTML {
             .textDecoration(linkStyle.underline == true ? .none : TextDecoration.underline, pseudo: .hover)
     }
 }
-
-
 
 extension HTML {
     public func linkColor(_ linkColor: HTMLColor?) -> some HTML {
@@ -44,11 +42,10 @@ extension HTML {
     }
 }
 
-
 public struct LinkStyle: Sendable {
 //    public var color: HTMLColor?
     public var underline: Bool?
-    
+
     public init(
 //        color: HTMLColor? = nil,
         underline: Bool? = nil

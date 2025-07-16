@@ -6,21 +6,14 @@
 //
 
 import Foundation
-import Testing
-import HTML_Markdown
 import HTML
+import HTML_Markdown
+import Testing
 
 @Test
-func markdown(){
-    
-    
-    
-    
+func markdown() {
+
 }
-
-
-
-
 
 func createMarkdown(@MarkdownBuilder _ content: () -> String) -> String {
     content()

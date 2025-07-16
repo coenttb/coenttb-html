@@ -5,9 +5,9 @@
 //  Created by Coen ten Thije Boonkkamp on 12/03/2025.
 //
 
+import Dependencies
 import Foundation
 import HTML
-import Dependencies
 
 extension HTMLColor {
     public struct Defaults: Sendable {
@@ -37,14 +37,14 @@ extension HTMLColor.Defaults {
         public var primary: HTMLColor
         public var secondary: HTMLColor
         public var tertiary: HTMLColor
-        
+
         public var link: HTMLColor
         public var error: HTMLColor
         public var success: HTMLColor
         public var warning: HTMLColor
-        
+
         public var disabled: HTMLColor
-        
+
         public init(
             primary: HTMLColor = .init(light: .hex("000000"), dark: .hex("FFFFFF")),
             secondary: HTMLColor = .init(light: .hex("3C3C43").opacity(0.6), dark: .hex("EBEBF5").opacity(0.6)),
@@ -73,13 +73,13 @@ extension HTMLColor.Defaults {
         public var primary: HTMLColor
         public var secondary: HTMLColor
         public var tertiary: HTMLColor
-        
+
         public var elevated: HTMLColor
         public var grouped: HTMLColor
-        
+
         public var selected: HTMLColor
         public var highlighted: HTMLColor
-        
+
         public init(
             primary: HTMLColor = .init(light: .hex("FFFFFF"), dark: .hex("121212")),
             secondary: HTMLColor = .init(light: .hex("F2F2F7"), dark: .hex("1C1C1E")),
@@ -107,7 +107,7 @@ extension HTMLColor.Defaults {
         public var accent: HTMLColor
         public var primarySubtle: HTMLColor
         public var secondarySubtle: HTMLColor
-        
+
         public init(
             primary: HTMLColor = .init(light: .hex("007AFF"), dark: .hex("0A84FF")),
             secondary: HTMLColor = .init(light: .hex("5856D6"), dark: .hex("5E5CE6")),
@@ -173,7 +173,7 @@ extension HTMLColor.Defaults: DependencyKey {
         background: .init(),
         branding: .init()
     )
-    
+
     public static let testValue: Self = liveValue
 }
 
@@ -183,8 +183,6 @@ extension DependencyValues {
         set { self[HTMLColor.Defaults.self] = newValue }
     }
 }
-
-
 
 extension HTMLColor {
     public static var gray: Self {
@@ -207,7 +205,7 @@ extension HTMLColor {
         @Dependency(\.color.offWhite) var offWhite
         return offWhite
     }
-    
+
     public static var cyan: Self {
         @Dependency(\.color.cyan) var cyan
         return cyan
@@ -224,7 +222,7 @@ extension HTMLColor {
         @Dependency(\.color.brown) var brown
         return brown
     }
-    
+
     public static var orange: Self {
         @Dependency(\.color.orange) var orange
         return orange
@@ -258,6 +256,3 @@ extension HTMLColor {
 extension HTMLColor {
     public static let buttonBackground: Self = .cardBackground
 }
-
-
-

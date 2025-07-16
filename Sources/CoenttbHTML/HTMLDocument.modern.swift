@@ -5,8 +5,8 @@
 //  Created by Coen ten Thije Boonkkamp on 28/07/2024.
 //
 
-import HTML
 import Foundation
+import HTML
 
 extension HTMLDocument where Head == _ModernHead {
     public static func modern(

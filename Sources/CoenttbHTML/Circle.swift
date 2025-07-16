@@ -9,12 +9,12 @@ import Foundation
 import HTML
 
 public struct Circle: HTML {
-    
+
     @HTMLBuilder let content: any HTML
-    
+
     public var width: LengthPercentage
     public var height: LengthPercentage
-    
+
     public init(
         width: LengthPercentage = .rem(10),
         height: LengthPercentage = .rem(10),
@@ -24,7 +24,7 @@ public struct Circle: HTML {
         self.width = width
         self.height = height
     }
-    
+
     public init(
         size: LengthPercentage,
         @HTMLBuilder content: @escaping () -> any HTML
@@ -33,7 +33,7 @@ public struct Circle: HTML {
         self.width = size
         self.height = size
     }
-    
+
     public var body: some HTML {
         div {
             div {

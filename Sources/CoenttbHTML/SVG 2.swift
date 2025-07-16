@@ -7,7 +7,6 @@ private func <| <A, B> (f: (A) -> B, a: A) -> B {
     return f(a)
 }
 
-
 func base64EncodedString(_ string: String) -> String {
     return Data(string.utf8).base64EncodedString()
 }

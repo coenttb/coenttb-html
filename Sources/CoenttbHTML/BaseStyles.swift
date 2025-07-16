@@ -5,14 +5,14 @@
 //  Created by Coen ten Thije Boonkkamp on 07/10/2024.
 //
 
-import HTML
 import Foundation
+import HTML
 
 public struct BaseStyles: HTML {
     public init() {
-        
+
     }
-    
+
     public var body: some HTML {
         Style { "\(renderedNormalizeCss)" }
         Style {"""
@@ -46,8 +46,8 @@ public struct BaseStyles: HTML {
             box-sizing: inherit;
         }
 
-        .markdown *:link, .markdown *:visited { 
-            color: inherit; 
+        .markdown *:link, .markdown *:visited {
+            color: inherit;
         }
 
         .diagnostic * {

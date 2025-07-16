@@ -13,7 +13,7 @@ public struct Label<Title: HTML, Icon: HTML>: HTML {
     let spacing: Length
     let title: Title
     let icon: Icon
-    
+
     public init(
         alignment: VerticalAlign = .middle,
         spacing: Length = 0.25.rem,
@@ -34,7 +34,6 @@ public struct Label<Title: HTML, Icon: HTML>: HTML {
     }
 }
 
-
 extension Label {
     public init(
         alignment: VerticalAlign = .middle,
@@ -45,7 +44,7 @@ extension Label {
         self = .init(
             alignment: alignment,
             spacing: spacing,
-            icon: {icon},
+            icon: { icon },
             title: { HTMLText(title) }
         )
     }

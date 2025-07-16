@@ -13,7 +13,7 @@ public struct ButtonStyle: Equatable {
     public let cornerRadius: LengthPercentage
     public let verticalPadding: LengthPercentage
     public let horizontalPadding: LengthPercentage
-    
+
     public init(
         cornerRadius: LengthPercentage = .rem(0.5),
         verticalPadding: LengthPercentage = .rem(0.75),
@@ -23,9 +23,9 @@ public struct ButtonStyle: Equatable {
         self.verticalPadding = verticalPadding
         self.horizontalPadding = horizontalPadding
     }
-    
+
     public static var `default`: Self { primary }
-    
+
     public static var primary: Self {
         ButtonStyle(
             cornerRadius: .rem(0.25),
@@ -33,7 +33,7 @@ public struct ButtonStyle: Equatable {
             horizontalPadding: .rem(1.6)
         )
     }
-    
+
     public static var secondary: Self {
         ButtonStyle(
             cornerRadius: .rem(0.25),
@@ -41,7 +41,7 @@ public struct ButtonStyle: Equatable {
             horizontalPadding: .rem(0.9)
         )
     }
-    
+
     public static var tertiary: Self {
         ButtonStyle(
             cornerRadius: .rem(0.25),
@@ -49,7 +49,7 @@ public struct ButtonStyle: Equatable {
             horizontalPadding: .rem(0.3)
         )
     }
-    
+
     public static var round: Self {
         ButtonStyle(
             cornerRadius: .percentage(100),
@@ -65,7 +65,7 @@ extension HTML {
         background: HTMLColor = .buttonBackground,
         style: ButtonStyle = .default
     ) -> some HTML {
-        
+
         let borderColor: HTMLColor? = {
             switch style {
             case .primary, .secondary, .tertiary:
@@ -76,7 +76,7 @@ extension HTML {
                 return nil
             }
         }()
-        
+
         let borderStyle: BorderStyle? = {
             switch style {
             case .primary, .secondary, .tertiary:
@@ -87,7 +87,7 @@ extension HTML {
                 return nil
             }
         }()
-        
+
         let backgroundColor: HTMLColor? = {
             switch style {
             case .primary, .secondary, .tertiary:
@@ -98,7 +98,7 @@ extension HTML {
                 return nil
             }
         }()
-        
+
         let backgroundColorHover: HTMLColor? = {
             switch style {
             case .primary, .secondary, .tertiary:
@@ -109,7 +109,7 @@ extension HTML {
                 return nil
             }
         }()
-        
+
         let boxShadow: String? = {
             switch style {
             case .primary, .secondary, .tertiary:
@@ -120,7 +120,7 @@ extension HTML {
                 return nil
             }
         }()
-        
+
         let boxShadowDark: String? = {
             switch style {
             case .primary, .secondary, .tertiary:
@@ -131,7 +131,7 @@ extension HTML {
                 return nil
             }
         }()
-        
+
         return self
             .padding(
                 vertical: style.verticalPadding,
@@ -168,7 +168,7 @@ public struct Button<Label: HTML, Icon: HTML>: HTML {
     let label: Label
     let background: HTMLColor
     let style: ButtonStyle
-    
+
     public init(
         button: HTMLElementTypes.Button = .init(),
         background: HTMLColor = .buttonBackground,
@@ -182,7 +182,7 @@ public struct Button<Label: HTML, Icon: HTML>: HTML {
         self.background = background
         self.style = style
     }
-    
+
     public var body: some HTML {
         return button {
             HTMLGroup {

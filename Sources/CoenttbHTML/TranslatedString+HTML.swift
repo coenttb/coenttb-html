@@ -9,11 +9,11 @@ import Foundation
 import HTML
 import Languages
 //
-//extension String: @retroactive HTML {
+// extension String: @retroactive HTML {
 //    public var body: some HTML {
 //         HTMLText(self.description)
 //    }
-//}
+// }
 
 extension TranslatedString: @retroactive HTML {
     public var body: some HTML {

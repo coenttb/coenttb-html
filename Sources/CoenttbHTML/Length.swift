@@ -9,12 +9,12 @@ import Foundation
 import HTML
 
 extension Length {
-    public static let zero:Self = 0.rem
-    public static let extraSmall:Self = 0.5.rem
-    public static let small:Self = 1.rem
-    public static let medium:Self = 2.rem
-    public static let large:Self = 4.rem
-    public static let extraLarge:Self = 8.rem
+    public static let zero: Self = 0.rem
+    public static let extraSmall: Self = 0.5.rem
+    public static let small: Self = 1.rem
+    public static let medium: Self = 2.rem
+    public static let large: Self = 4.rem
+    public static let extraLarge: Self = 8.rem
 }
 
 extension Length {
@@ -36,41 +36,41 @@ extension Length {
 }
 
 extension LengthPercentage {
-    public static let extraSmall:Self = .rem(0.5)
-    public static let small:Self = .rem(1)
-    public static let medium:Self = .rem(2)
-    public static let large:Self = .rem(4)
-    public static let extraLarge:Self = .rem(8)
-    
+    public static let extraSmall: Self = .rem(0.5)
+    public static let small: Self = .rem(1)
+    public static let medium: Self = .rem(2)
+    public static let large: Self = .rem(4)
+    public static let extraLarge: Self = .rem(8)
+
     public static let root: Self = .rem(1)
     public static let primary: Self = root
     public static let secondary: Self = .rem(0.875)
 }
 
 extension LengthPercentageConvertible {
-    public static var extraSmall:Self {
+    public static var extraSmall: Self {
         .lengthPercentage(.extraSmall)
     }
-    public static var small:Self {
+    public static var small: Self {
         .lengthPercentage(.small)
     }
-    public static var medium:Self {
+    public static var medium: Self {
         .lengthPercentage(.medium)
     }
-    public static var large:Self {
+    public static var large: Self {
         .lengthPercentage(.large)
     }
-    public static var extraLarge:Self {
+    public static var extraLarge: Self {
         .lengthPercentage(.extraLarge)
     }
-    
-    public static var root: Self{
+
+    public static var root: Self {
         .lengthPercentage(.root)
     }
-    public static var primary: Self{
+    public static var primary: Self {
         .lengthPercentage(.primary)
     }
-    public static var secondary: Self{
+    public static var secondary: Self {
         .lengthPercentage(.secondary)
     }
 }

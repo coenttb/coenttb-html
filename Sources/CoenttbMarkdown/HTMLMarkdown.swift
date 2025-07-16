@@ -7,11 +7,11 @@ public struct HTMLMarkdown: HTML {
         public let id: String
         public let level: Int
         public let timestamp: Timestamp?
-        
+
         public var anchor: String {
             "#\(id)"
         }
-        
+
         public init(title: String, id: String, level: Int, timestamp: Timestamp?) {
             self.title = title
             self.id = id
@@ -19,12 +19,12 @@ public struct HTMLMarkdown: HTML {
             self.timestamp = timestamp
         }
     }
-    
+
     public let markdown: String
     public let previewOnly: Bool
     public let tableOfContents: [Section]
     public let content: AnyHTML
-    
+
     public init(_ markdown: String, previewOnly: Bool = false) {
         self.markdown = markdown
         self.previewOnly = previewOnly
@@ -32,7 +32,7 @@ public struct HTMLMarkdown: HTML {
         self.content = converter.visit(Document(parsing: markdown, options: .parseBlockDirectives))
         self.tableOfContents = converter.tableOfContents
     }
-    
+
     public var body: some HTML {
         tag("swift-html-markdown") {
             VStack(spacing: .rem(0.5)) {
@@ -49,18 +49,18 @@ public struct HTMLMarkdown: HTML {
 
 private struct HTMLConverter: MarkupVisitor {
     typealias Result = AnyHTML
-    
+
     let previewOnly: Bool
-    
+
     init(previewOnly: Bool) {
         self.previewOnly = previewOnly
     }
-    
+
     private var currentTimestamp: Timestamp?
     private var currentSection: (title: String, id: String, level: Int)?
     private var ids: Set<Slug> = []
     var tableOfContents: [HTMLMarkdown.Section] = []
-    
+
     @HTMLBuilder
     mutating func defaultVisit(_ markup: any Markup) -> AnyHTML {
         for child in markup.children {
@@ -70,13 +70,13 @@ private struct HTMLConverter: MarkupVisitor {
             }
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitBlockDirective(_ blockDirective: Markdown.BlockDirective) -> AnyHTML {
         switch blockDirective.name {
         case "Button":
             VStack(alignment: .center) {
-                
+
                 Button(
                     button: .init(),
                     background: .buttonBackground,
@@ -89,25 +89,25 @@ private struct HTMLConverter: MarkupVisitor {
                 .href(blockDirective.argumentText.segments.map(\.trimmedText).joined(separator: " "))
                 .margin(vertical: .rem(0.5), horizontal: 0)
             }
-            
+
         case "Comment":
             HTMLEmpty()
-            
+
         case "T":
             let segments = blockDirective.argumentText.segments
                 .map(\.trimmedText)
                 .joined()
                 .split(separator: ", ")
-            
+
             if let segment = segments.first {
                 let timestamp = Timestamp(
                     format: String(segment),
                     speaker: segments.dropFirst().first.map { String($0) }
                 )
-                let _ = currentTimestamp = timestamp
+                _ = currentTimestamp = timestamp
                 timestamp
                 if let currentSection {
-                    let _ = tableOfContents.append(
+                    _ = tableOfContents.append(
                         HTMLMarkdown.Section(
                             title: currentSection.title,
                             id: currentSection.id,
@@ -115,10 +115,10 @@ private struct HTMLConverter: MarkupVisitor {
                             timestamp: timestamp
                         )
                     )
-                    let _ = self.currentSection = nil
+                    _ = self.currentSection = nil
                 }
             }
-            
+
         case "Video":
             video {
                 tag("source")
@@ -129,14 +129,14 @@ private struct HTMLConverter: MarkupVisitor {
             .attribute("playsinline")
             .objectFit(.cover)
             .margin(bottom: .rem(1))
-            
+
         default:
             for child in blockDirective.children {
                 visit(child)
             }
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitBlockQuote(_ blockQuote: Markdown.BlockQuote) -> AnyHTML {
         let aside = Markdown.Aside(blockQuote)
@@ -155,7 +155,7 @@ private struct HTMLConverter: MarkupVisitor {
                         HTMLText(aside.kind.displayName)
                     }
                     .color(style.borderColor)
-                    
+
                     for child in aside.content {
                         visit(child)
                     }
@@ -169,7 +169,7 @@ private struct HTMLConverter: MarkupVisitor {
             .padding(vertical: .rem(1), horizontal: .rem(1.5))
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitCodeBlock(_ codeBlock: Markdown.CodeBlock) -> AnyHTML {
         let language: (class: String, dataLine: String?)? = codeBlock.language.map {
@@ -198,7 +198,7 @@ private struct HTMLConverter: MarkupVisitor {
         .padding(vertical: .rem(1), horizontal: .rem(1.5))
         .borderRadius(.px(6))
     }
-    
+
     @HTMLBuilder
     mutating func visitEmphasis(_ emphasis: Markdown.Emphasis) -> AnyHTML {
         em {
@@ -207,11 +207,11 @@ private struct HTMLConverter: MarkupVisitor {
             }
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitHeading(_ heading: Markdown.Heading) -> AnyHTML {
         let id = ids.slug(for: heading.plainText)
-        
+
         a {}
             .id(id)
             .display(.block)
@@ -219,13 +219,13 @@ private struct HTMLConverter: MarkupVisitor {
             .top(.em(-5))
             .top(.em(-0.5), media: .desktop)
             .visibility(.hidden)
-        
+
         div {
             Header(heading.level + 2) {
                 for child in heading.children {
                     visit(child)
                 }
-                
+
                 CoenttbHTML.Link(href: .init(value: "#\(id)")) {
                     SVG("Link") {
             """
@@ -249,15 +249,15 @@ private struct HTMLConverter: MarkupVisitor {
         .padding(left: .rem(2.25))
         .padding(left: .rem(2.5), media: .desktop)
         .position(.relative)
-        
-        let _ = currentSection = (title: heading.plainText, id: id, level: heading.level)
+
+        _ = currentSection = (title: heading.plainText, id: id, level: heading.level)
     }
-    
+
     @HTMLBuilder
     mutating func visitHTMLBlock(_ html: Markdown.HTMLBlock) -> AnyHTML {
         HTMLRaw(html.rawHTML)
     }
-    
+
     @HTMLBuilder
     mutating func visitImage(_ image: Markdown.Image) -> AnyHTML {
         if let source = image.source {
@@ -277,24 +277,24 @@ private struct HTMLConverter: MarkupVisitor {
             }
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitInlineCode(_ inlineCode: Markdown.InlineCode) -> AnyHTML {
         code {
             HTMLText(inlineCode.code)
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitInlineHTML(_ inlineHTML: Markdown.InlineHTML) -> AnyHTML {
         HTMLRaw(inlineHTML.rawHTML)
     }
-    
+
     @HTMLBuilder
     mutating func visitLineBreak(_ lineBreak: Markdown.LineBreak) -> AnyHTML {
         br()
     }
-    
+
     @HTMLBuilder
     mutating func visitLink(_ link: Markdown.Link) -> AnyHTML {
         Link(href: .init(link.destination ?? "#")) {
@@ -304,7 +304,7 @@ private struct HTMLConverter: MarkupVisitor {
         }
         .attribute(Title.tag, link.title)
     }
-    
+
     @HTMLBuilder
     mutating func visitListItem(_ listItem: Markdown.ListItem) -> AnyHTML {
         li {
@@ -315,7 +315,7 @@ private struct HTMLConverter: MarkupVisitor {
             }
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitOrderedList(_ orderedList: Markdown.OrderedList) -> AnyHTML {
         ol {
@@ -328,7 +328,7 @@ private struct HTMLConverter: MarkupVisitor {
             rowGap: .rem(0.5)
         )
     }
-    
+
     @HTMLBuilder
     mutating func visitParagraph(_ paragraph: Markdown.Paragraph) -> AnyHTML {
         p {
@@ -340,12 +340,12 @@ private struct HTMLConverter: MarkupVisitor {
         .padding(0)
         .margin(0)
     }
-    
+
     @HTMLBuilder
     mutating func visitSoftBreak(_ softBreak: Markdown.SoftBreak) -> AnyHTML {
         " "
     }
-    
+
     @HTMLBuilder
     mutating func visitStrikethrough(_ strikethrough: Markdown.Strikethrough) -> AnyHTML {
         s {
@@ -354,7 +354,7 @@ private struct HTMLConverter: MarkupVisitor {
             }
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitStrong(_ strong: Markdown.Strong) -> AnyHTML {
         tag("strong") {
@@ -363,7 +363,7 @@ private struct HTMLConverter: MarkupVisitor {
             }
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitTable(_ table: Markdown.Table) -> AnyHTML {
         tag("table") {
@@ -394,7 +394,7 @@ private struct HTMLConverter: MarkupVisitor {
             }
         }
     }
-    
+
     @HTMLBuilder
     private mutating func render(
         tag: HTMLTag,
@@ -412,17 +412,17 @@ private struct HTMLConverter: MarkupVisitor {
                 .attribute("align", columnAlignments[column]?.attributeValue)
                 .attribute("colspan", cell.colspan == 1 ? nil : "\(cell.colspan)")
                 .attribute("rowspan", cell.rowspan == 1 ? nil : "\(cell.rowspan)")
-                
-                let _ = column += Int(cell.colspan)
+
+                _ = column += Int(cell.colspan)
             }
         }
     }
-    
+
     @HTMLBuilder
     mutating func visitText(_ text: Markdown.Text) -> AnyHTML {
         HTMLText(text.string)
     }
-    
+
     @HTMLBuilder
     mutating func visitThematicBreak(_ thematicBreak: Markdown.ThematicBreak) -> AnyHTML {
         div {
@@ -433,7 +433,7 @@ private struct HTMLConverter: MarkupVisitor {
             bottom: .rem(2)
         )
     }
-    
+
     @HTMLBuilder
     mutating func visitUnorderedList(_ unorderedList: Markdown.UnorderedList) -> AnyHTML {
         ul {
@@ -467,18 +467,17 @@ extension HTMLBuilder {
     fileprivate static func buildExpression(_ expression: any HTML) -> AnyHTML {
         AnyHTML(expression)
     }
-    
+
     @_disfavoredOverload
     fileprivate static func buildFinalResult(_ component: some HTML) -> AnyHTML {
         AnyHTML(component)
     }
 }
 
-
 private struct BlockQuoteStyle {
     var backgroundColor: HTMLColor
     var borderColor: HTMLColor
-    
+
     init(blockName: String) {
         switch blockName {
         case "Warning", "Correction":
@@ -530,7 +529,7 @@ public struct Timestamp: HTML {
     public var minute: Int
     public var second: Int
     public var speaker: String?
-    
+
     public init?(format: String, speaker: String?) {
         let components = format.split(separator: ":")
         guard let second = components.last.flatMap({ Int($0) }) else { return nil }
@@ -539,26 +538,26 @@ public struct Timestamp: HTML {
         self.second = second
         self.speaker = speaker
     }
-    
+
     public var duration: Int {
         hour * 60 * 60 + minute * 60 + second
     }
-    
+
     public var id: String {
         "t\(duration)"
     }
-    
+
     public var anchor: String {
         "#\(id)"
     }
-    
+
     public func formatted() -> String {
         var formatted = hour > 0 ? "\(hour):" : ""
         formatted.append("\(hour > 0 && minute < 10 ? "0" : "")\(minute):")
         formatted.append("\(second < 10 ? "0" : "")\(second)")
         return formatted
     }
-    
+
     public var body: some HTML {
         div {
             if let speaker {
@@ -572,7 +571,7 @@ public struct Timestamp: HTML {
                 .inlineStyle("text-transform", "uppercase")
                 .top(.rem(0.5), media: .desktop)
             }
-            
+
             let duration = self.duration
             div {
                 div {

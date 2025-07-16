@@ -18,19 +18,21 @@ extension Target.Dependency {
 }
 
 extension Target.Dependency {
-    static var language: Self { .product(name: "Languages", package: "swift-language") }
-    static var html: Self { .product(name: "HTML", package: "swift-html") }
     static var dependencies: Self { .product(name: "Dependencies", package: "swift-dependencies") }
-    static var orderedCollections: Self { .product(name: "OrderedCollections", package: "swift-collections") }
-    static var swiftMarkdown: Self { .product(name: "Markdown", package: "swift-markdown") }
+    static var html: Self { .product(name: "HTML", package: "swift-html") }
+    static var language: Self { .product(name: "Languages", package: "swift-language") }
     static var htmlToPdf: Self { .product(name: "HtmlToPdf", package: "swift-html-to-pdf") }
     static var htmlTestSupport: Self { .product(name: "HTMLTestSupport", package: "swift-html-css-pointfree") }
+    static var pointFreeHtmlToPdf: Self { .product(name: "PointFreeHtmlToPdf", package: "pointfree-html-to-pdf") }
+    static var orderedCollections: Self { .product(name: "OrderedCollections", package: "swift-collections") }
+    static var swiftMarkdown: Self { .product(name: "Markdown", package: "swift-markdown") }
 }
 
 extension [Package.Dependency] {
     static var `default`: Self {
         [
             .package(url: "https://github.com/apple/swift-collections.git", from: "1.1.2"),
+            .package(url: "https://github.com/coenttb/pointfree-html-to-pdf.git", branch: "main"),
             .package(url: "https://github.com/coenttb/swift-html.git", branch: "main"),
             .package(url: "https://github.com/coenttb/swift-html-to-pdf.git", branch: "main"),
             .package(url: "https://github.com/coenttb/swift-html-css-pointfree.git", branch: "main"),
@@ -126,9 +128,7 @@ let package = Package.html(
             name: .coenttbHtmlToPdf,
             library: true,
             dependencies: [
-                .dependencies,
-                .coenttbHtml,
-                .htmlToPdf,
+                .pointFreeHtmlToPdf
             ]
         ),
     ]

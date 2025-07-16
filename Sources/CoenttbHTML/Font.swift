@@ -5,9 +5,9 @@
 //  Created by Coen ten Thije Boonkkamp on 26/06/2025.
 //
 
+import Dependencies
 import Foundation
 import HTML
-import Dependencies
 
 extension Font {
     public struct Defaults: Sendable {
@@ -24,7 +24,7 @@ extension Font {
         public var caption: Font
         public var caption2: Font
         public var footnote: Font
-        
+
         public init(
             extraLargeTitle2: Font,
             extraLargeTitle: Font,

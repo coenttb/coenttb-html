@@ -8,7 +8,7 @@ public struct Paragraph<Content: HTML>: HTML {
         self.size = size
         self.content = content()
     }
-    
+
     public var body: some HTML {
         tag("p") {
             content
@@ -18,7 +18,7 @@ public struct Paragraph<Content: HTML>: HTML {
         .margin(0)
         .lineHeight(1.5)
     }
-    
+
     public enum Size {
         case big
         case regular

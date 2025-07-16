@@ -5,11 +5,11 @@
 ////  Created by Coen ten Thije Boonkkamp on 01/09/2024.
 ////
 //
-//import Foundation
-//import HTML
-//import Dependencies
+// import Foundation
+// import HTML
+// import Dependencies
 //
-//public struct Halftone3<Image: HTML>: HTML {
+// public struct Halftone3<Image: HTML>: HTML {
 //    let grayscale: String
 //    let dotSize: LengthPercentage
 //    let lineColor: HTMLColor
@@ -66,10 +66,10 @@
 //            
 //        }
 //    }
-//}
+// }
 //
 //
-//extension HTML {
+// extension HTML {
 //    @discardableResult
 //    public func position(
 //        _ value: CSSPropertyTypes.Position?,
@@ -88,9 +88,9 @@
 //            .right(right, media: media, pre: pre, pseudo: pseudo)
 //            .bottom(bottom, media: media, pre: pre, pseudo: pseudo)
 //    }
-//}
+// }
 //
-//extension HTML {
+// extension HTML {
 //    public func halftone3(
 //        grayscale: String = "0",
 //        dotSize: LengthPercentage = .em(0.3),
@@ -115,11 +115,11 @@
 //            image: self
 //        )
 //    }
-//}
+// }
 //
-//#if DEBUG && canImport(SwiftUI)
-//import SwiftUI
-//#Preview {
+// #if DEBUG && canImport(SwiftUI)
+// import SwiftUI
+// #Preview {
 //    VStack {
 //        HTMLDocument {
 //            div {
@@ -150,7 +150,7 @@
 //            )
 //        }
 //    }.frame(height: 800)
-//}
+// }
 //
 //
-//#endif
+// #endif

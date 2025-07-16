@@ -17,7 +17,7 @@ import Testing
     .snapshots(record: .failed)
 )
 struct LinkTests {
-    
+
     @Test("Link rendering with string label")
     func testLinkRenderingWithStringLabel() {
         assertInlineSnapshot(
@@ -49,7 +49,7 @@ struct LinkTests {
             """
         }
     }
-    
+
     @Test("Link rendering with HTML content")
     func testLinkRenderingWithHTMLContent() {
         assertInlineSnapshot(
@@ -86,7 +86,7 @@ struct LinkTests {
             """
         }
     }
-    
+
     @Test("Link with underline enabled")
     func testLinkWithUnderlineEnabled() {
         withDependencies {
@@ -122,7 +122,7 @@ struct LinkTests {
             }
         }
     }
-    
+
     @Test("Link with no href")
     func testLinkWithNoHref() {
         assertInlineSnapshot(

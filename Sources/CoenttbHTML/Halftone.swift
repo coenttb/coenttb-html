@@ -5,9 +5,9 @@
 //  Created by Coen ten Thije Boonkkamp on 01/09/2024.
 //
 
+import Dependencies
 import Foundation
 import HTML
-import Dependencies
 
 public struct Halftone<Image: HTML>: HTML {
     let grayscale: String
@@ -68,11 +68,10 @@ public struct Halftone<Image: HTML>: HTML {
             .inlineStyle("background", "radial-gradient(circle at center, \(lineColor.light.description), \(lineColor.dark.description))", pseudo: .before)
             .inlineStyle("background-size", "\(dotSize.description) \(dotSize.description)", pseudo: .before)
             .transform("rotate(\(rotationAngle)deg)", pseudo: .before)
-            
+
         }
     }
 }
-
 
 extension HTML {
     public func halftone(
@@ -100,7 +99,6 @@ extension HTML {
         )
     }
 }
-
 
 #if DEBUG && canImport(SwiftUI)
 import SwiftUI

@@ -3,7 +3,7 @@ public struct Card<Content: HTML, Header: HTML, Footer: HTML>: HTML {
     let content: Content
     let header: Header
     let footer: Footer
-    
+
     public init(
         @HTMLBuilder content: () -> Content,
         @HTMLBuilder header: () -> Header = { HTMLEmpty() },
@@ -13,7 +13,7 @@ public struct Card<Content: HTML, Header: HTML, Footer: HTML>: HTML {
         self.header = header()
         self.footer = footer()
     }
-        
+
     public var body: some HTML {
         VStack {
             header
@@ -23,11 +23,11 @@ public struct Card<Content: HTML, Header: HTML, Footer: HTML>: HTML {
                     style: .solid,
                     color: .init(light: .hex("e8e8e8"), dark: .hex("3d3d3d"))
                 )
-            
+
             VStack {
                 VStack(spacing: 0.rem) { content }
                     .flexGrow()
-                
+
                 footer
             }
             .flexGrow()
@@ -46,4 +46,3 @@ public struct Card<Content: HTML, Header: HTML, Footer: HTML>: HTML {
         .overflow(.hidden)
     }
 }
-

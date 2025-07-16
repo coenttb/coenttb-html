@@ -13,7 +13,7 @@ import Testing
 
 @Suite("Header Tests")
 struct HeaderTests {
-    
+
     @Test("Header rendering")
     func testHeaderRendering() {
         assertInlineSnapshot(
@@ -31,7 +31,7 @@ struct HeaderTests {
             .margin-bottom-yQEjs3:not(:last-child){margin-bottom:0.5rem}
             .margin-top-ukUO62:not(:first-child){margin-top:0.5rem}
             .margin-QlFKs1{margin:0px}
-            
+
                 </style>
               </head>
               <body>
