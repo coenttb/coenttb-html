@@ -7,7 +7,6 @@
 
 import Foundation
 import Markdown
-
 import CoenttbHTML
 
 public struct EmailMarkdown: HTML {
@@ -233,7 +232,7 @@ private struct Visitor: MarkupVisitor {
                 .attribute("colspan", cell.colspan == 1 ? nil : "\(cell.colspan)")
                 .attribute("rowspan", cell.rowspan == 1 ? nil : "\(cell.rowspan)")
 
-                _ = column += Int(cell.colspan)
+//                _ = column += Int(cell.colspan)
             }
         }
     }
