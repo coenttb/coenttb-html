@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import HTML
+import PointFreeHTML
 import Languages
 //
 // extension String: @retroactive HTML {
