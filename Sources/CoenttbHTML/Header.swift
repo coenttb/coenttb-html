@@ -3,28 +3,36 @@ import HTML
 
 public struct Header<Content: HTML>: HTML {
     let size: Int
+    let disableMargins: Bool
+    
     @HTMLBuilder let content: Content
-    public init(_ size: Int = 3, @HTMLBuilder content: () -> Content) {
+    
+    public init(
+        _ size: Int = 3,
+        disableMargins: Bool = false,
+        @HTMLBuilder content: () -> Content
+    ) {
         self.size = size
+        self.disableMargins = disableMargins
         self.content = content()
     }
-
+    
     public var body: some HTML {
         tag("h\(size)") { content }
-        .margin(0)
-        .margin(
-            top: marginTop,
-            pseudo: .not(.firstChild)
-        )
-        .margin(
-            bottom: marginBottom,
-            pseudo: .not(.lastChild)
-        )
-        .fontSize(fontSize)
-        .fontWeight(700)
-        .lineHeight(lineHeight)
+            .margin(disableMargins != true ? .zero : nil)
+            .marginTop(
+                disableMargins != true ? .lengthPercentage(marginTop) : nil,
+                pseudo: .not(.firstChild)
+            )
+            .marginBottom(
+                disableMargins != true ? .lengthPercentage(marginBottom) : nil,
+                pseudo: .not(.lastChild)
+            )
+            .fontSize(fontSize)
+            .fontWeight(700)
+            .lineHeight(lineHeight)
     }
-
+    
     var fontSize: CSSPropertyTypes.FontSize {
         switch size {
         case 1: .rem(4)
