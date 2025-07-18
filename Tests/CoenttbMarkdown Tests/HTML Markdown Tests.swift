@@ -7,14 +7,5 @@
 
 import Foundation
 import HTML
-import HTML_Markdown
+import CoenttbMarkdown
 import Testing
-
-@Test
-func markdown() {
-
-}
-
-func createMarkdown(@MarkdownBuilder _ content: () -> String) -> String {
-    content()
-}
