@@ -21,8 +21,8 @@ extension Target.Dependency {
     static var dependencies: Self { .product(name: "Dependencies", package: "swift-dependencies") }
     static var html: Self { .product(name: "HTML", package: "swift-html") }
     static var language: Self { .product(name: "Languages", package: "swift-language") }
-    static var pointfreeHtmlTestSupport: Self { .product(name: "PointFreeHtmlTestSupport", package: "pointfree-html") }
-    static var pointFreeHtmlToPdf: Self { .product(name: "PointFreeHtmlToPdf", package: "pointfree-html-to-pdf") }
+    static var pointfreeHTMLTestSupport: Self { .product(name: "PointFreeHTMLTestSupport", package: "pointfree-html") }
+    static var pointFreeHTMLToPDF: Self { .product(name: "PointFreeHTMLToPDF", package: "pointfree-html-to-pdf") }
     static var orderedCollections: Self { .product(name: "OrderedCollections", package: "swift-collections") }
     static var swiftMarkdown: Self { .product(name: "Markdown", package: "swift-markdown") }
 }
@@ -80,7 +80,7 @@ extension Package {
                 targets.map { target in
                     Target.testTarget(
                         name: "\(target.name) Tests",
-                        dependencies: [.init(stringLiteral: target.name)] + [.pointfreeHtmlTestSupport]
+                        dependencies: [.init(stringLiteral: target.name)] + [.pointfreeHTMLTestSupport]
                     )
                 }
             ].flatMap { $0 },
@@ -127,7 +127,7 @@ let package = Package.html(
             name: .coenttbHtmlToPdf,
             library: true,
             dependencies: [
-                .pointFreeHtmlToPdf
+                .pointFreeHTMLToPDF
             ]
         ),
     ]

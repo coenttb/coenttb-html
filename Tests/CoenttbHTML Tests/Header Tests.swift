@@ -8,7 +8,7 @@
 import Foundation
 
 import CoenttbHTML
-import PointFreeHtmlTestSupport
+import PointFreeHTMLTestSupport
 import Testing
 
 @Suite("Header Tests")

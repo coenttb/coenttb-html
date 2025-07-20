@@ -21,8 +21,8 @@ extension Target.Dependency {
     static var dependencies: Self { .product(name: "Dependencies", package: "swift-dependencies") }
     static var html: Self { .product(name: "HTML", package: "swift-html") }
     static var language: Self { .product(name: "Languages", package: "swift-language") }
-    static var htmlTestSupport: Self { .product(name: "HTMLTestSupport", package: "swift-html-css-pointfree") }
-    static var pointFreeHtmlToPdf: Self { .product(name: "PointFreeHtmlToPdf", package: "pointfree-html-to-pdf") }
+    static var pointfreeHTMLTestSupport: Self { .product(name: "PointFreeHTMLTestSupport", package: "pointfree-html") }
+    static var pointFreeHTMLToPDF: Self { .product(name: "PointFreeHTMLToPDF", package: "pointfree-html-to-pdf") }
     static var orderedCollections: Self { .product(name: "OrderedCollections", package: "swift-collections") }
     static var swiftMarkdown: Self { .product(name: "Markdown", package: "swift-markdown") }
 }
@@ -31,12 +31,13 @@ extension [Package.Dependency] {
     static var `default`: Self {
         [
             .package(url: "https://github.com/apple/swift-collections.git", from: "1.1.2"),
+            .package(url: "https://github.com/coenttb/pointfree-html.git", branch: "main"),
             .package(url: "https://github.com/coenttb/pointfree-html-to-pdf.git", branch: "main"),
             .package(url: "https://github.com/coenttb/swift-html.git", branch: "main"),
             .package(url: "https://github.com/coenttb/swift-html-css-pointfree.git", branch: "main"),
             .package(url: "https://github.com/coenttb/swift-language.git", branch: "main"),
             .package(url: "https://github.com/pointfreeco/swift-dependencies.git", from: "1.3.5"),
-            .package(url: "https://github.com/swiftlang/swift-markdown.git", from: "0.4.0")
+            .package(url: "https://github.com/swiftlang/swift-markdown.git", from: "0.4.0"),
         ]
     }
 }
@@ -57,14 +58,14 @@ extension Package {
                 .iOS(.v17),
                 .macOS(.v14),
                 .tvOS(.v17),
-                .watchOS(.v10)
-            ],
+                .watchOS(.v10),
+              ],
             products: [
                 [
                     .library(name: .coenttbEmail, targets: [.coenttbEmail]),
                     .library(name: .coenttbHtml, targets: [.coenttbHtml]),
                     .library(name: .coenttbMarkdown, targets: [.coenttbMarkdown]),
-                    .library(name: .coenttbHtmlToPdf, targets: [.coenttbHtmlToPdf])
+                    .library(name: .coenttbHtmlToPdf, targets: [.coenttbHtmlToPdf]),
                 ]
             ].flatMap { $0
             },
@@ -79,7 +80,7 @@ extension Package {
                 targets.map { target in
                     Target.testTarget(
                         name: "\(target.name) Tests",
-                        dependencies: [.init(stringLiteral: target.name)] + [.htmlTestSupport]
+                        dependencies: [.init(stringLiteral: target.name)] + [.pointfreeHTMLTestSupport]
                     )
                 }
             ].flatMap { $0 },
@@ -97,7 +98,7 @@ let package = Package.html(
                 .dependencies,
                 .orderedCollections,
                 .coenttbHtml,
-                .swiftMarkdown
+                .swiftMarkdown,
             ]
         ),
         .init(
@@ -119,15 +120,15 @@ let package = Package.html(
                 .swiftMarkdown,
                 .language,
                 .coenttbHtml,
-                .coenttbMarkdown
+                .coenttbMarkdown,
             ]
         ),
         .init(
             name: .coenttbHtmlToPdf,
             library: true,
             dependencies: [
-                .pointFreeHtmlToPdf
+                .pointFreeHTMLToPDF
             ]
-        )
+        ),
     ]
 )

@@ -9,7 +9,7 @@ import Foundation
 
 import CoenttbHTML
 import Dependencies
-import PointFreeHtmlTestSupport
+import PointFreeHTMLTestSupport
 import Testing
 
 @Suite(

@@ -86,7 +86,7 @@ private struct HTMLConverter: MarkupVisitor {
                         visit(child)
                     }
                 }
-                .href(blockDirective.argumentText.segments.map(\.trimmedText).joined(separator: " "))
+                .href(.init(blockDirective.argumentText.segments.map(\.trimmedText).joined(separator: " ")))
                 .margin(vertical: .rem(0.5), horizontal: 0)
             }
 
