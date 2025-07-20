@@ -100,6 +100,19 @@ extension HTML {
     }
 }
 
+// Unsure whether this should be added.
+private enum ObjectStyleKey: DependencyKey {
+    static let liveValue = ObjectStyle(position: .inherit)
+    static let testValue = ObjectStyle(position: .inherit)
+}
+
+extension DependencyValues {
+    public var objectStyle: ObjectStyle {
+        get { self[ObjectStyleKey.self] }
+        set { self[ObjectStyleKey.self] = newValue }
+    }
+}
+
 #if DEBUG && canImport(SwiftUI)
 import SwiftUI
 #Preview {
