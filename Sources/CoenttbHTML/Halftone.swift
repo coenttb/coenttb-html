@@ -148,3 +148,29 @@ import SwiftUI
     }
 }
 #endif
+
+
+// EXAMPLE FOR GENERATING BLOG POST CARD IMAGE
+//PageModule(theme: .content) {
+//    div {
+//        div {
+//            div {
+//                Image.prehalftone
+//                    .inlineStyle("filter", "sepia(0.8) hue-rotate(-260deg) saturate(2) brightness(1.15) contrast(1.2)")
+//                    .halftone(
+//                        lineColor: .black.withDarkColor(.white),
+//                        lineContrast: 1500,
+//                        photoBrightness: 90,
+//                        photoContrast: 110,
+//                        photoBlur: .px(0.5),
+//                        blendMode: .overlay,
+//                        rotationAngle: 15
+//                    )
+//            }
+//            .overflow(.hidden)
+//        }
+//        .height(.px(300))
+//        .width(.px(384))
+//    }
+//    .position(.relative)
+//}
