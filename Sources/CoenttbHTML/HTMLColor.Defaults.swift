@@ -39,6 +39,8 @@ extension HTMLColor.Defaults {
         public var tertiary: HTMLColor
 
         public var link: HTMLColor
+        public var button: HTMLColor
+        
         public var error: HTMLColor
         public var success: HTMLColor
         public var warning: HTMLColor
@@ -50,6 +52,7 @@ extension HTMLColor.Defaults {
             secondary: HTMLColor = .init(light: .hex("3C3C43").opacity(0.6), dark: .hex("EBEBF5").opacity(0.6)),
             tertiary: HTMLColor = .init(light: .hex("3C3C43").opacity(0.3), dark: .hex("EBEBF5").opacity(0.3)),
             link: HTMLColor = .init(light: .hex("007AFF"), dark: .hex("0A84FF")),
+            button: HTMLColor = .text.primary,
             error: HTMLColor = .init(light: .hex("FF3B30"), dark: .hex("FF453A")),
             success: HTMLColor = .init(light: .hex("34C759"), dark: .hex("30D158")),
             warning: HTMLColor = .init(light: .hex("FF9500"), dark: .hex("FF9F0A")),
@@ -60,6 +63,7 @@ extension HTMLColor.Defaults {
             self.secondary = secondary
             self.tertiary = tertiary
             self.link = link
+            self.button = button
             self.error = error
             self.success = success
             self.warning = warning
