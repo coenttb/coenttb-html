@@ -7,6 +7,7 @@
 
 import Foundation
 import HTML
+import Dependencies
 
 // MARK: - Button Style
 public struct ButtonStyle: Equatable {
