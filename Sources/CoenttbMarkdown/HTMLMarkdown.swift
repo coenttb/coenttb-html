@@ -79,7 +79,6 @@ private struct HTMLConverter: MarkupVisitor {
 
                 Button(
                     button: .init(),
-                    background: .buttonBackground,
                     style: .secondary
                 ) {
                     for child in blockDirective.children {
