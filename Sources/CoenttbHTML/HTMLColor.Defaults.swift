@@ -52,7 +52,7 @@ extension HTMLColor.Defaults {
             secondary: HTMLColor = .init(light: .hex("3C3C43").opacity(0.6), dark: .hex("EBEBF5").opacity(0.6)),
             tertiary: HTMLColor = .init(light: .hex("3C3C43").opacity(0.3), dark: .hex("EBEBF5").opacity(0.3)),
             link: HTMLColor = .init(light: .hex("007AFF"), dark: .hex("0A84FF")),
-            button: HTMLColor = .text.primary,
+            button: HTMLColor = .init(light: .hex("000000"), dark: .hex("FFFFFF")),
             error: HTMLColor = .init(light: .hex("FF3B30"), dark: .hex("FF453A")),
             success: HTMLColor = .init(light: .hex("34C759"), dark: .hex("30D158")),
             warning: HTMLColor = .init(light: .hex("FF9500"), dark: .hex("FF9F0A")),
