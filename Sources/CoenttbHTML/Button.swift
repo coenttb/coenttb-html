@@ -171,7 +171,7 @@ public struct Button<Label: HTML, Icon: HTML>: HTML {
 
     public init(
         button: HTMLElementTypes.Button = .init(),
-        background: HTMLColor = .buttonBackground,
+        background: HTMLColor = .background.button,
         style: ButtonStyle = .default,
         @HTMLBuilder label: () -> Label = { HTMLEmpty() },
         @HTMLBuilder icon: () -> Icon = { HTMLEmpty() }

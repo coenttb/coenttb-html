@@ -79,6 +79,8 @@ extension HTMLColor.Defaults {
 
         public var selected: HTMLColor
         public var highlighted: HTMLColor
+        
+        public var button: HTMLColor
 
         public init(
             primary: HTMLColor = .init(light: .hex("FFFFFF"), dark: .hex("121212")),
@@ -87,7 +89,8 @@ extension HTMLColor.Defaults {
             elevated: HTMLColor = .init(light: .hex("FFFFFF"), dark: .hex("1C1C1E")),
             grouped: HTMLColor = .init(light: .hex("F2F2F7"), dark: .hex("1C1C1E")),
             selected: HTMLColor = .init(light: .hex("DCDCDC"), dark: .hex("3A3A3C")),
-            highlighted: HTMLColor = .init(light: .hex("E5E5EA").opacity(0.6), dark: .hex("3A3A3C").opacity(0.6))
+            highlighted: HTMLColor = .init(light: .hex("E5E5EA").opacity(0.6), dark: .hex("3A3A3C").opacity(0.6)),
+            button: HTMLColor = .init(light: .rgb(red: 245, green: 246, blue: 248), dark: .rgb(red: 25, green: 25, blue: 27))
         ) {
             self.primary = primary
             self.secondary = secondary
@@ -96,6 +99,7 @@ extension HTMLColor.Defaults {
             self.grouped = grouped
             self.selected = selected
             self.highlighted = highlighted
+            self.button = button
         }
     }
 }
