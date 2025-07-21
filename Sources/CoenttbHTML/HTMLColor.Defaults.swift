@@ -161,28 +161,31 @@ extension HTMLColor {
 }
 
 extension HTMLColor.Defaults: DependencyKey {
-    public static let liveValue: Self = .init(
-        gray: .gray500,
-        blue: .blue500,
-        green: .green500,
-        purple: .purple500,
-        red: .red500,
-        yellow: .yellow500,
-        orange: .orange500,
-        teal: .teal500,
-        cyan: .cyan500,
-        pink: .pink500,
-        brown: .brown500,
-        black: .init(light: .hex("121212"), dark: .hex("121212")),
-        offBlack: .init(light: .hex("171717"), dark: .hex("171717")),
-        white: .init(light: .hex("fff"), dark: .hex("fff")),
-        offWhite: .init(light: .hex("fafafa"), dark: .hex("fafafa")),
-        text: .init(),
-        background: .init(),
-        branding: .init()
-    )
+    public static var liveValue: Self {
+        .init(
+            gray: .gray500,
+            blue: .blue500,
+            green: .green500,
+            purple: .purple500,
+            red: .red500,
+            yellow: .yellow500,
+            orange: .orange500,
+            teal: .teal500,
+            cyan: .cyan500,
+            pink: .pink500,
+            brown: .brown500,
+            black: .init(light: .hex("121212"), dark: .hex("121212")),
+            offBlack: .init(light: .hex("171717"), dark: .hex("171717")),
+            white: .init(light: .hex("fff"), dark: .hex("fff")),
+            offWhite: .init(light: .hex("fafafa"), dark: .hex("fafafa")),
+            text: .init(),
+            background: .init(),
+            branding: .init()
+        )
+    }
 
-    public static let testValue: Self = liveValue
+    public static var testValue: Self { liveValue }
+    public static var previewValue: Self { liveValue }
 }
 
 extension DependencyValues {
@@ -213,7 +216,6 @@ extension HTMLColor {
         @Dependency(\.color.offWhite) var offWhite
         return offWhite
     }
-
     public static var cyan: Self {
         @Dependency(\.color.cyan) var cyan
         return cyan

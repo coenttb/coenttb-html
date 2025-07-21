@@ -13,7 +13,7 @@ public struct ButtonStyle: Equatable {
     public let cornerRadius: LengthPercentage
     public let verticalPadding: LengthPercentage
     public let horizontalPadding: LengthPercentage
-
+    
     public init(
         cornerRadius: LengthPercentage = .rem(0.5),
         verticalPadding: LengthPercentage = .rem(0.75),
@@ -23,9 +23,9 @@ public struct ButtonStyle: Equatable {
         self.verticalPadding = verticalPadding
         self.horizontalPadding = horizontalPadding
     }
-
+    
     public static var `default`: Self { primary }
-
+    
     public static var primary: Self {
         ButtonStyle(
             cornerRadius: .rem(0.25),
@@ -33,7 +33,7 @@ public struct ButtonStyle: Equatable {
             horizontalPadding: .rem(1.6)
         )
     }
-
+    
     public static var secondary: Self {
         ButtonStyle(
             cornerRadius: .rem(0.25),
@@ -41,7 +41,7 @@ public struct ButtonStyle: Equatable {
             horizontalPadding: .rem(0.9)
         )
     }
-
+    
     public static var tertiary: Self {
         ButtonStyle(
             cornerRadius: .rem(0.25),
@@ -49,7 +49,7 @@ public struct ButtonStyle: Equatable {
             horizontalPadding: .rem(0.3)
         )
     }
-
+    
     public static var round: Self {
         ButtonStyle(
             cornerRadius: .percentage(100),
@@ -62,10 +62,10 @@ public struct ButtonStyle: Equatable {
 // MARK: - HTML Protocol Extension
 extension HTML {
     public func buttonStyle(
-        background: HTMLColor = .buttonBackground,
+        background: HTMLColor,
         style: ButtonStyle = .default
     ) -> some HTML {
-
+        
         let borderColor: HTMLColor? = {
             switch style {
             case .primary, .secondary, .tertiary:
@@ -76,7 +76,7 @@ extension HTML {
                 return nil
             }
         }()
-
+        
         let borderStyle: BorderStyle? = {
             switch style {
             case .primary, .secondary, .tertiary:
@@ -87,7 +87,7 @@ extension HTML {
                 return nil
             }
         }()
-
+        
         let backgroundColor: HTMLColor? = {
             switch style {
             case .primary, .secondary, .tertiary:
@@ -98,7 +98,7 @@ extension HTML {
                 return nil
             }
         }()
-
+        
         let backgroundColorHover: HTMLColor? = {
             switch style {
             case .primary, .secondary, .tertiary:
@@ -109,7 +109,7 @@ extension HTML {
                 return nil
             }
         }()
-
+        
         let boxShadow: String? = {
             switch style {
             case .primary, .secondary, .tertiary:
@@ -120,7 +120,7 @@ extension HTML {
                 return nil
             }
         }()
-
+        
         let boxShadowDark: String? = {
             switch style {
             case .primary, .secondary, .tertiary:
@@ -131,8 +131,9 @@ extension HTML {
                 return nil
             }
         }()
-
+        
         return self
+//            .color(color)
             .padding(
                 vertical: style.verticalPadding,
                 horizontal: style.horizontalPadding
@@ -158,45 +159,86 @@ extension HTML {
             .inlineStyle("box-shadow", "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)")
             .inlineStyle("box-shadow", boxShadow)
             .inlineStyle("box-shadow", boxShadowDark, media: .dark)
+        
+        
     }
 }
 
 // MARK: - Updated Button Struct
 public struct Button<Label: HTML, Icon: HTML>: HTML {
     let button: HTMLElementTypes.Button
-    let icon: Icon?
     let label: Label
-    let background: HTMLColor
+    let icon: Icon?
     let style: ButtonStyle
-
+    
     public init(
         button: HTMLElementTypes.Button = .init(),
-        background: HTMLColor = .background.button,
         style: ButtonStyle = .default,
-        @HTMLBuilder label: () -> Label = { HTMLEmpty() },
-        @HTMLBuilder icon: () -> Icon = { HTMLEmpty() }
+        @HTMLBuilder label: () -> Label,
+        @HTMLBuilder icon: () -> Icon
     ) {
         self.button = button
         self.icon = icon()
         self.label = label()
-        self.background = background
         self.style = style
     }
-
+    
+    public init(
+        button: HTMLElementTypes.Button = .init(),
+        style: ButtonStyle = .default,
+        @HTMLBuilder label: () -> Label
+    ) where Icon == HTMLEmpty {
+        self.button = button
+        self.icon = HTMLEmpty()
+        self.label = label()
+        self.style = style
+    }
+    
+    @Dependency(\.color.text.button) var textColor
+    @Dependency(\.color.background.button) var background
+    
     public var body: some HTML {
-        return button {
+        return HTMLElementTypes.Button {
             HTMLGroup {
                 if let icon = icon {
                     CoenttbHTML.Label {
-                        icon
+                        span { icon }
+                            .color(textColor)
                     } title: {
-                        label
+                        span { label }
+                            .color(textColor)
                     }
                 } else {
-                    label
+                    span { label }
+                        .color(textColor)
                 }
             }
         }
-        .buttonStyle(background: background, style: style)
+        .buttonStyle(
+            background: background,
+            style: style
+        )
     }
 }
+
+
+#if DEBUG && canImport(SwiftUI) && os(macOS)
+import SwiftUI
+import Dependencies
+
+#Preview {
+    HTMLDocument {
+        withDependencies {
+            $0.color.text.button = .yellow
+            $0.color.background.button = .red
+        } operation: {
+            CoenttbHTML.Button(
+                button: .init(type: .submit)
+            ) {
+                "Hello"
+            }
+        }
+    }
+    .frame(height: 800)
+}
+#endif
