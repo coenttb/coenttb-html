@@ -1,5 +1,5 @@
 {
-  "originHash" : "d6ea7f4c32fd887eed6eca2c383771d8cd5fa13ebc10699d1354d3d626887fd3",
+  "originHash" : "0902cfa25643ccd5bdddd800dbc6a05e9e77c9726679ca3f1e0191d6312e0da2",
   "pins" : [
     {
       "identity" : "combine-schedulers",
@@ -97,7 +97,7 @@
       "location" : "https://github.com/coenttb/swift-html.git",
       "state" : {
         "branch" : "main",
-        "revision" : "d354cd3be8080ae1ebccc5e6bf70b78cd33190e7"
+        "revision" : "18bc9bd8f7f798bbb626eb83ba53e05b680588c1"
       }
     },
     {
@@ -106,7 +106,7 @@
       "location" : "https://github.com/coenttb/swift-html-css-pointfree.git",
       "state" : {
         "branch" : "main",
-        "revision" : "4e8e1634e978948d7945ab96304fcc4b1f9a1f0e"
+        "revision" : "c1f30c480c05e80b10de44bac66a709524aff5f9"
       }
     },
     {
