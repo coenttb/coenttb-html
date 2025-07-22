@@ -21,16 +21,19 @@ public struct AppleEmail: CustomStringConvertible {
         htmlContent: String,
         from: String,
         subject: String = "",
-        date: Date = Date()
+        date: Date = Date(),
+        boundary: String = UUID().uuidString,
+        message: String = UUID().uuidString,
+        universal: String = UUID().uuidString,
     ) {
         self.htmlContent = htmlContent
         self.from = from
         self.subject = subject
         self.date = date
         
-        self.boundaryUUID = UUID().uuidString
-        self.messageUUID = UUID().uuidString
-        self.universalUUID = UUID().uuidString
+        self.boundaryUUID = boundary
+        self.messageUUID = message
+        self.universalUUID = universal
     }
 
     public init(
