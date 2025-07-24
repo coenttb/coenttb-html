@@ -40,7 +40,7 @@ extension HTMLColor.Defaults {
 
         public var link: HTMLColor
         public var button: HTMLColor
-        
+
         public var error: HTMLColor
         public var success: HTMLColor
         public var warning: HTMLColor
@@ -83,7 +83,7 @@ extension HTMLColor.Defaults {
 
         public var selected: HTMLColor
         public var highlighted: HTMLColor
-        
+
         public var button: HTMLColor
 
         public init(

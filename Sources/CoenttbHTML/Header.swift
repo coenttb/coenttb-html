@@ -4,9 +4,9 @@ import HTML
 public struct Header<Content: HTML>: HTML {
     let size: Int
     let disableMargins: Bool
-    
+
     @HTMLBuilder let content: Content
-    
+
     public init(
         _ size: Int = 3,
         disableMargins: Bool = false,
@@ -16,7 +16,7 @@ public struct Header<Content: HTML>: HTML {
         self.disableMargins = disableMargins
         self.content = content()
     }
-    
+
     public var body: some HTML {
         tag("h\(size)") { content }
             .margin(disableMargins != true ? .zero : nil)
@@ -32,7 +32,7 @@ public struct Header<Content: HTML>: HTML {
             .fontWeight(700)
             .lineHeight(lineHeight)
     }
-    
+
     var fontSize: CSSPropertyTypes.FontSize {
         switch size {
         case 1: .rem(4)

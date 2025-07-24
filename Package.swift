@@ -20,7 +20,7 @@ extension Target.Dependency {
 extension Target.Dependency {
     static var dependencies: Self { .product(name: "Dependencies", package: "swift-dependencies") }
     static var html: Self { .product(name: "HTML", package: "swift-html") }
-    static var translating: Self { .product(name: "Languages", package: "swift-translating") }
+    static var translating: Self { .product(name: "Translating", package: "swift-translating") }
     static var pointfreeHTMLTestSupport: Self { .product(name: "PointFreeHTMLTestSupport", package: "pointfree-html") }
     static var pointFreeHTMLToPDF: Self { .product(name: "PointFreeHTMLToPDF", package: "pointfree-html-to-pdf") }
     static var orderedCollections: Self { .product(name: "OrderedCollections", package: "swift-collections") }

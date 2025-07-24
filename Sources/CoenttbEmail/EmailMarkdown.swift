@@ -5,9 +5,9 @@
 //  Created by Coen ten Thije Boonkkamp on 07/10/2024.
 //
 
+import CoenttbHTML
 import Foundation
 import Markdown
-import CoenttbHTML
 
 public struct EmailMarkdown: HTML {
     public let markdown: String

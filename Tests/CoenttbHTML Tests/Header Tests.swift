@@ -11,7 +11,10 @@ import CoenttbHTML
 import PointFreeHTMLTestSupport
 import Testing
 
-@Suite("Header Tests")
+@Suite(
+    "Header Tests",
+    .snapshots(record: .missing)
+)
 struct HeaderTests {
 
     @Test("Header rendering")
@@ -22,7 +25,7 @@ struct HeaderTests {
         ) {
             """
             <!doctype html>
-            <html lang="en">
+            <html>
               <head>
                 <style>
             .line-height-EHclK1{line-height:1.15}

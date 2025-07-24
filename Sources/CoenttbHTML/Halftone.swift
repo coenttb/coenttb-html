@@ -149,9 +149,8 @@ import SwiftUI
 }
 #endif
 
-
 // EXAMPLE FOR GENERATING BLOG POST CARD IMAGE
-//PageModule(theme: .content) {
+// PageModule(theme: .content) {
 //    div {
 //        div {
 //            div {
@@ -173,4 +172,4 @@ import SwiftUI
 //        .width(.px(384))
 //    }
 //    .position(.relative)
-//}
+// }

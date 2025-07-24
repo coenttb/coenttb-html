@@ -14,7 +14,7 @@ import Testing
 
 @Suite(
     "Link Tests",
-    .snapshots(record: .failed)
+    .snapshots(record: .missing)
 )
 struct LinkTests {
 
@@ -26,7 +26,7 @@ struct LinkTests {
         ) {
             """
             <!doctype html>
-            <html lang="en">
+            <html>
               <head>
                 <style>
             .text-decoration-Zf0gY:hover{text-decoration:underline}
@@ -35,15 +35,15 @@ struct LinkTests {
             .color-o1VU64:link{color:#007AFF}
             .color-XpGrd3:visited{color:#007AFF}
             .color-JKZuT{color:#007AFF}
-            @media (prefers-color-scheme: dark), print{
-              .color-z3CCO2:link{color:#0A84FF}
-              .color-LMtVM1:visited{color:#0A84FF}
-              .color-CNK0n{color:#0A84FF}
+            @media (prefers-color-scheme: dark){
+              .color-DTYT92:link{color:#0A84FF}
+              .color-3k8XR1:visited{color:#0A84FF}
+              .color-owfGf1{color:#0A84FF}
             }
 
                 </style>
               </head>
-              <body><a class="text-decoration-Zf0gY text-decoration-Q5Er64 text-decoration-Mif7n4 color-z3CCO2 color-o1VU64 color-LMtVM1 color-XpGrd3 color-CNK0n color-JKZuT" href="https://example.com">Visit website</a>
+              <body><a class="text-decoration-Zf0gY text-decoration-Q5Er64 text-decoration-Mif7n4 color-o1VU64 color-DTYT92 color-XpGrd3 color-3k8XR1 color-JKZuT color-owfGf1" href="https://example.com">Visit website</a>
               </body>
             </html>
             """
@@ -63,7 +63,7 @@ struct LinkTests {
         ) {
             """
             <!doctype html>
-            <html lang="en">
+            <html>
               <head>
                 <style>
             .text-decoration-Zf0gY:hover{text-decoration:underline}
@@ -72,15 +72,15 @@ struct LinkTests {
             .color-o1VU64:link{color:#007AFF}
             .color-XpGrd3:visited{color:#007AFF}
             .color-JKZuT{color:#007AFF}
-            @media (prefers-color-scheme: dark), print{
-              .color-z3CCO2:link{color:#0A84FF}
-              .color-LMtVM1:visited{color:#0A84FF}
-              .color-CNK0n{color:#0A84FF}
+            @media (prefers-color-scheme: dark){
+              .color-DTYT92:link{color:#0A84FF}
+              .color-3k8XR1:visited{color:#0A84FF}
+              .color-owfGf1{color:#0A84FF}
             }
 
                 </style>
               </head>
-              <body><a class="text-decoration-Zf0gY text-decoration-Q5Er64 text-decoration-Mif7n4 color-z3CCO2 color-o1VU64 color-LMtVM1 color-XpGrd3 color-CNK0n color-JKZuT" href="https://example.com"><span>Complex </span><strong>Content</strong></a>
+              <body><a class="text-decoration-Zf0gY text-decoration-Q5Er64 text-decoration-Mif7n4 color-o1VU64 color-DTYT92 color-XpGrd3 color-3k8XR1 color-JKZuT color-owfGf1" href="https://example.com"><span>Complex </span><strong>Content</strong></a>
               </body>
             </html>
             """
@@ -98,7 +98,7 @@ struct LinkTests {
             ) {
                 """
                 <!doctype html>
-                <html lang="en">
+                <html>
                   <head>
                     <style>
                 .text-decoration-8r95N:hover{text-decoration:none}
@@ -107,15 +107,15 @@ struct LinkTests {
                 .color-o1VU64:link{color:#007AFF}
                 .color-XpGrd3:visited{color:#007AFF}
                 .color-JKZuT{color:#007AFF}
-                @media (prefers-color-scheme: dark), print{
-                  .color-z3CCO2:link{color:#0A84FF}
-                  .color-LMtVM1:visited{color:#0A84FF}
-                  .color-CNK0n{color:#0A84FF}
+                @media (prefers-color-scheme: dark){
+                  .color-DTYT92:link{color:#0A84FF}
+                  .color-3k8XR1:visited{color:#0A84FF}
+                  .color-owfGf1{color:#0A84FF}
                 }
 
                     </style>
                   </head>
-                  <body><a class="text-decoration-8r95N text-decoration-tfb0F1 text-decoration-gUV393 color-z3CCO2 color-o1VU64 color-LMtVM1 color-XpGrd3 color-CNK0n color-JKZuT" href="https://example.com">Underlined link</a>
+                  <body><a class="text-decoration-8r95N text-decoration-tfb0F1 text-decoration-gUV393 color-o1VU64 color-DTYT92 color-XpGrd3 color-3k8XR1 color-JKZuT color-owfGf1" href="https://example.com">Underlined link</a>
                   </body>
                 </html>
                 """
@@ -131,7 +131,7 @@ struct LinkTests {
         ) {
             """
             <!doctype html>
-            <html lang="en">
+            <html>
               <head>
                 <style>
             .text-decoration-Zf0gY:hover{text-decoration:underline}
@@ -140,15 +140,15 @@ struct LinkTests {
             .color-o1VU64:link{color:#007AFF}
             .color-XpGrd3:visited{color:#007AFF}
             .color-JKZuT{color:#007AFF}
-            @media (prefers-color-scheme: dark), print{
-              .color-z3CCO2:link{color:#0A84FF}
-              .color-LMtVM1:visited{color:#0A84FF}
-              .color-CNK0n{color:#0A84FF}
+            @media (prefers-color-scheme: dark){
+              .color-DTYT92:link{color:#0A84FF}
+              .color-3k8XR1:visited{color:#0A84FF}
+              .color-owfGf1{color:#0A84FF}
             }
 
                 </style>
               </head>
-              <body><a class="text-decoration-Zf0gY text-decoration-Q5Er64 text-decoration-Mif7n4 color-z3CCO2 color-o1VU64 color-LMtVM1 color-XpGrd3 color-CNK0n color-JKZuT">No link</a>
+              <body><a class="text-decoration-Zf0gY text-decoration-Q5Er64 text-decoration-Mif7n4 color-o1VU64 color-DTYT92 color-XpGrd3 color-3k8XR1 color-JKZuT color-owfGf1">No link</a>
               </body>
             </html>
             """
