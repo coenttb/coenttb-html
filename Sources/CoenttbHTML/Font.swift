@@ -100,8 +100,8 @@ extension DependencyValues {
     }
 }
 
-extension Font.Defaults: DependencyKey {
-    public static var liveValue: Font.Defaults {
+extension Font.Defaults {
+    @inlinable public static var `default`: Self {
         .init(
             extraLargeTitle2: .init(
                 family: .systemUi,
@@ -222,4 +222,9 @@ extension Font.Defaults: DependencyKey {
             )
         )
     }
+}
+
+extension Font.Defaults: DependencyKey {
+    public static var testValue: Font.Defaults { .default }
+    public static var liveValue: Font.Defaults { .default }
 }
