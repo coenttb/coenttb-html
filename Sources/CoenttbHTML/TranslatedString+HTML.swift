@@ -7,7 +7,7 @@
 
 import Foundation
 import PointFreeHTML
-import Languages
+import TranslatedString
 //
 // extension String: @retroactive HTML {
 //    public var body: some HTML {

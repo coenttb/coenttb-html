@@ -1,5 +1,5 @@
 {
-  "originHash" : "0902cfa25643ccd5bdddd800dbc6a05e9e77c9726679ca3f1e0191d6312e0da2",
+  "originHash" : "35a2594e1961a7ddf73c9223c2beca2682e84e726937e64b301537868e500bf0",
   "pins" : [
     {
       "identity" : "combine-schedulers",
@@ -128,15 +128,6 @@
       }
     },
     {
-      "identity" : "swift-language",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/coenttb/swift-language.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "c47dab7ce0d7c678f699d48ce0bb623bc6138ee8"
-      }
-    },
-    {
       "identity" : "swift-markdown",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swiftlang/swift-markdown.git",
@@ -161,6 +152,15 @@
       "state" : {
         "revision" : "f99ae8aa18f0cf0d53481901f88a0991dc3bd4a2",
         "version" : "601.0.1"
+      }
+    },
+    {
+      "identity" : "swift-translating",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/coenttb/swift-translating.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "00e42232490bc595015fdf62d89b7ccdab4a917c"
       }
     },
     {
