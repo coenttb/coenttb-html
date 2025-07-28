@@ -1,5 +1,5 @@
 {
-  "originHash" : "23ae012c2d2b6bd3825fa404fe58164f1a58e75884aa61567a9c9878e8f5f46e",
+  "originHash" : "b98651942a5894d5e89d73300876afde8dbac963ce3564477a2d54b44ce2441a",
   "pins" : [
     {
       "identity" : "combine-schedulers",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/pointfree-html.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "0867cb15127d9db0fe54e53d5a47fb5438d84710"
+        "revision" : "0867cb15127d9db0fe54e53d5a47fb5438d84710",
+        "version" : "2.0.0"
       }
     },
     {
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/pointfree-html-to-pdf.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "d75ff65951a7b4486375d818f601d92560a6c081"
+        "revision" : "c496007fea2c032b5e4c93377879e548e109949a",
+        "version" : "0.0.1"
       }
     },
     {
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/swift-css-types.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "affd6981a74682b2a345ac663309a4f50ef5710b"
+        "revision" : "3e54aa7d8b61510edd1d8bad2697476908f4f1d8",
+        "version" : "0.0.1"
       }
     },
     {
@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/swift-html.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "bb724418039fafd3aefc3630cd639f2660fed8ef"
+        "revision" : "c318a0c58d4633b19c6f35bb2a3ee6badd6b0e8c",
+        "version" : "0.0.1"
       }
     },
     {
@@ -105,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/swift-html-css-pointfree.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "d0c7dd120817fc7225fccfc3d737356addf5b4bb"
+        "revision" : "925b36fa89e8247f7b01240905930886c46dd32f",
+        "version" : "0.0.1"
       }
     },
     {
@@ -114,17 +114,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/swift-html-to-pdf.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "445d920c28b4b62d3208763511794253fd7c9e15"
+        "revision" : "445d920c28b4b62d3208763511794253fd7c9e15",
+        "version" : "0.4.0"
       }
     },
     {
       "identity" : "swift-html-types",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/coenttb/swift-html-types",
+      "location" : "https://github.com/coenttb/swift-html-types.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "984d22a98253c9b7d110b0c478fdee2c9bef5210"
+        "revision" : "c0e7f642573eef0e06006ef16b53ad7a0c7010c6",
+        "version" : "0.1.0"
       }
     },
     {
@@ -159,8 +159,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/swift-translating.git",
       "state" : {
-        "revision" : "bcdace8349ec3c02864deec406af01a891232d6a",
-        "version" : "0.1.0"
+        "revision" : "4785e9fc33fd6722f6301e03938301e8c83d9f20",
+        "version" : "0.1.1"
       }
     },
     {

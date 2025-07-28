@@ -91,10 +91,11 @@ private struct Email: HTML {
                 Style {
                     stylesheet
                 }
-                meta(charset: .utf8) {}
+                meta(charset: .utf8)()
                 meta(
-                    name: "viewport", content: "width=device-width, initial-scale=1.0, viewport-fit=cover"
-                ) {}
+                    name: "viewport",
+                    content: "width=device-width, initial-scale=1.0, viewport-fit=cover"
+                )()
             }
             tag("body") {
                 HTMLRaw(bodyBytes)
