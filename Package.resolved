@@ -1,5 +1,5 @@
 {
-  "originHash" : "b98651942a5894d5e89d73300876afde8dbac963ce3564477a2d54b44ce2441a",
+  "originHash" : "b844fd0a1b5edf4533fc0374a8ccd152fde72cdf110ae45b2d3f350506b2e1de",
   "pins" : [
     {
       "identity" : "combine-schedulers",
@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/swift-html.git",
       "state" : {
-        "revision" : "c318a0c58d4633b19c6f35bb2a3ee6badd6b0e8c",
-        "version" : "0.0.1"
+        "branch" : "main",
+        "revision" : "c318a0c58d4633b19c6f35bb2a3ee6badd6b0e8c"
       }
     },
     {
