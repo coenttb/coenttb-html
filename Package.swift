@@ -18,6 +18,7 @@ extension Target.Dependency {
 }
 
 extension Target.Dependency {
+    static var markdownBuilder: Self { .product(name: "MarkdownBuilder", package: "swift-builders") }
     static var dependencies: Self { .product(name: "Dependencies", package: "swift-dependencies") }
     static var html: Self { .product(name: "HTML", package: "swift-html") }
     static var translating: Self { .product(name: "Translating", package: "swift-translating") }
@@ -49,6 +50,7 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-collections.git", from: "1.1.2"),
         .package(url: "https://github.com/coenttb/pointfree-html.git", from: "2.0.0"),
         .package(url: "https://github.com/coenttb/pointfree-html-to-pdf.git", from: "0.0.1"),
+        .package(url: "https://github.com/coenttb/swift-builders.git", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-html.git", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-html-css-pointfree.git", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-translating.git", from: "0.0.1"),
@@ -78,7 +80,8 @@ let package = Package(
                 .dependencies,
                 .orderedCollections,
                 .coenttbHtml,
-                .swiftMarkdown
+                .swiftMarkdown,
+                .markdownBuilder
             ]
         ),
         .testTarget(
