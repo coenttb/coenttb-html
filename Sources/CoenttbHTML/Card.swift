@@ -19,9 +19,6 @@ public struct Card<Content: HTML, Header: HTML, Footer: HTML>: HTML {
             div {
                 header
             }
-            .minHeight(.rem(10))
-            .display(.flex)
-            .alignItems(.center)
             .borderBottom(.init(width: .px(1), style: .solid, color: .hex("#e8e8e8")), media: .prefersColorScheme(.light))
             .borderBottom(.init(width: .px(1), style: .solid, color: .hex("#3d3d3d")), media: .prefersColorScheme(.dark))
 
