@@ -16,13 +16,14 @@ public struct Card<Content: HTML, Header: HTML, Footer: HTML>: HTML {
 
     public var body: some HTML {
         VStack {
-            header
-                .border(
-                    .bottom,
-                    width: .px(1),
-                    style: .solid,
-                    color: .init(light: .hex("e8e8e8"), dark: .hex("3d3d3d"))
-                )
+            div {
+                header
+            }
+            .minHeight(.rem(10))
+            .display(.flex)
+            .alignItems(.center)
+            .borderBottom(.init(width: .px(1), style: .solid, color: .hex("#e8e8e8")), media: .prefersColorScheme(.light))
+            .borderBottom(.init(width: .px(1), style: .solid, color: .hex("#3d3d3d")), media: .prefersColorScheme(.dark))
 
             VStack {
                 VStack(spacing: 0.rem) { content }
