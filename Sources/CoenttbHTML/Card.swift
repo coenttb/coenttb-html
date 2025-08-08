@@ -33,11 +33,12 @@ public struct Card<Content: HTML, Header: HTML, Footer: HTML>: HTML {
             .flexGrow()
             .padding(top: .rem(0.5), horizontal: .rem(1.5), bottom: .rem(1.5))
         }
-        .border(
-            .bottom,
-            width: .px(1),
-            style: .solid,
-            color: .init(light: .hex("#353535")),
+        .borderBottom(
+            .init(
+                width: .px(1),
+                style: .solid,
+                color: .hex("#353535")
+            ),
             media: .prefersColorScheme(.dark)
         )
         .inlineStyle("border", "1px #353535 solid", media: .dark)
