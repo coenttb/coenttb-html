@@ -33,6 +33,9 @@ public struct Card<Content: HTML, Header: HTML, Footer: HTML>: HTML {
             .flexGrow()
             .padding(top: .rem(0.5), horizontal: .rem(1.5), bottom: .rem(1.5))
         }
+        .display(.flex)
+        .flexDirection(.column)
+        .height(.percent(100))
         .borderBottom(
             .init(
                 width: .px(1),
