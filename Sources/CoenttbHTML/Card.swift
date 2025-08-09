@@ -15,7 +15,7 @@ public struct Card<Content: HTML, Header: HTML, Footer: HTML>: HTML {
     }
 
     public var body: some HTML {
-        VStack {
+        VStack(spacing: .rem(0)) {
             div {
                 header
             }
@@ -33,7 +33,6 @@ public struct Card<Content: HTML, Header: HTML, Footer: HTML>: HTML {
         }
         .display(.flex)
         .flexDirection(.column)
-        .height(.percent(100))
         .borderBottom(
             .init(
                 width: .px(1),
