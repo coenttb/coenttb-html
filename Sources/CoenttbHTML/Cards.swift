@@ -27,9 +27,8 @@ public struct Cards: HTML {
             horizontalSpacing: .rem(1),
             verticalSpacing: .rem(1)
         ) {
-            HTMLForEach(cards.suffix(3).reversed()) { card in
+            HTMLForEach(cards) { card in
                 AnyHTML(card)
-                    .maxWidth(.rem(24), media: .desktop)
                     .margin(
                         top: .rem(1),
                         right: .zero,
