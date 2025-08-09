@@ -10,7 +10,7 @@ import Foundation
 import HTML
 
 extension HTMLColor {
-    public struct Defaults: Sendable {
+    public struct Theme: Sendable {
         public var gray: HTMLColor
         public var blue: HTMLColor
         public var green: HTMLColor
@@ -26,13 +26,13 @@ extension HTMLColor {
         public var offBlack: HTMLColor
         public var white: HTMLColor
         public var offWhite: HTMLColor
-        public var text: HTMLColor.Defaults.Text
-        public var background: HTMLColor.Defaults.Background
-        public var branding: HTMLColor.Defaults.Branding
+        public var text: HTMLColor.Theme.Text
+        public var background: HTMLColor.Theme.Background
+        public var branding: HTMLColor.Theme.Branding
     }
 }
 
-extension HTMLColor.Defaults {
+extension HTMLColor.Theme {
     public struct Text: Sendable {
         public var primary: HTMLColor
         public var secondary: HTMLColor
@@ -48,16 +48,16 @@ extension HTMLColor.Defaults {
         public var disabled: HTMLColor
 
         public init(
-            primary: HTMLColor = .init(light: .hex("000000"), dark: .hex("FFFFFF")),
-            secondary: HTMLColor = .init(light: .hex("3C3C43").opacity(0.6), dark: .hex("EBEBF5").opacity(0.6)),
-            tertiary: HTMLColor = .init(light: .hex("3C3C43").opacity(0.3), dark: .hex("EBEBF5").opacity(0.3)),
-            link: HTMLColor = .init(light: .hex("007AFF"), dark: .hex("0A84FF")),
-            button: HTMLColor = .init(light: .hex("000000"), dark: .hex("FFFFFF")),
-            error: HTMLColor = .init(light: .hex("FF3B30"), dark: .hex("FF453A")),
-            success: HTMLColor = .init(light: .hex("34C759"), dark: .hex("30D158")),
-            warning: HTMLColor = .init(light: .hex("FF9500"), dark: .hex("FF9F0A")),
-            inverted: HTMLColor = .init(light: .hex("FFFFFF"), dark: .hex("000000")),
-            disabled: HTMLColor = .init(light: .hex("3C3C43").opacity(0.2), dark: .hex("EBEBF5").opacity(0.2))
+            primary: HTMLColor,
+            secondary: HTMLColor,
+            tertiary: HTMLColor,
+            link: HTMLColor,
+            button: HTMLColor,
+            error: HTMLColor,
+            success: HTMLColor,
+            warning: HTMLColor,
+            inverted: HTMLColor,
+            disabled: HTMLColor
         ) {
             self.primary = primary
             self.secondary = secondary
@@ -72,7 +72,9 @@ extension HTMLColor.Defaults {
     }
 }
 
-extension HTMLColor.Defaults {
+
+
+extension HTMLColor.Theme {
     public struct Background: Sendable {
         public var primary: HTMLColor
         public var secondary: HTMLColor
@@ -87,14 +89,14 @@ extension HTMLColor.Defaults {
         public var button: HTMLColor
 
         public init(
-            primary: HTMLColor = .init(light: .hex("FFFFFF"), dark: .hex("121212")),
-            secondary: HTMLColor = .init(light: .hex("F2F2F7"), dark: .hex("1C1C1E")),
-            tertiary: HTMLColor = .init(light: .hex("EBEBEB"), dark: .hex("2C2C2E")),
-            elevated: HTMLColor = .init(light: .hex("FFFFFF"), dark: .hex("1C1C1E")),
-            grouped: HTMLColor = .init(light: .hex("F2F2F7"), dark: .hex("1C1C1E")),
-            selected: HTMLColor = .init(light: .hex("DCDCDC"), dark: .hex("3A3A3C")),
-            highlighted: HTMLColor = .init(light: .hex("E5E5EA").opacity(0.6), dark: .hex("3A3A3C").opacity(0.6)),
-            button: HTMLColor = .init(light: .rgb(red: 245, green: 246, blue: 248), dark: .rgb(red: 25, green: 25, blue: 27))
+            primary: HTMLColor,
+            secondary: HTMLColor,
+            tertiary: HTMLColor,
+            elevated: HTMLColor,
+            grouped: HTMLColor,
+            selected: HTMLColor,
+            highlighted: HTMLColor,
+            button: HTMLColor
         ) {
             self.primary = primary
             self.secondary = secondary
@@ -108,7 +110,9 @@ extension HTMLColor.Defaults {
     }
 }
 
-extension HTMLColor.Defaults {
+
+
+extension HTMLColor.Theme {
     public struct Branding: Sendable {
         public var primary: HTMLColor
         public var secondary: HTMLColor
@@ -117,11 +121,11 @@ extension HTMLColor.Defaults {
         public var secondarySubtle: HTMLColor
 
         public init(
-            primary: HTMLColor = .init(light: .hex("007AFF"), dark: .hex("0A84FF")),
-            secondary: HTMLColor = .init(light: .hex("5856D6"), dark: .hex("5E5CE6")),
-            accent: HTMLColor = .init(light: .hex("FF9500"), dark: .hex("FF9F0A")),
-            primarySubtle: HTMLColor = .init(light: .hex("007AFF").opacity(0.2), dark: .hex("0A84FF").opacity(0.2)),
-            secondarySubtle: HTMLColor = .init(light: .hex("5856D6").opacity(0.2), dark: .hex("5E5CE6").opacity(0.2))
+            primary: HTMLColor,
+            secondary: HTMLColor,
+            accent: HTMLColor,
+            primarySubtle: HTMLColor,
+            secondarySubtle: HTMLColor
         ) {
             self.primary = primary
             self.secondary = secondary
@@ -133,65 +137,45 @@ extension HTMLColor.Defaults {
 }
 
 extension HTMLColor {
-    public static var `default`: HTMLColor.Defaults {
+    public static var `default`: HTMLColor.Theme {
         @Dependency(\.color) var color
         return color
     }
 }
 
 extension HTMLColor {
-    public static var text: HTMLColor.Defaults.Text {
+    public static var text: HTMLColor.Theme.Text {
         @Dependency(\.color.text) var text
         return text
     }
 }
 
 extension HTMLColor {
-    public static var background: HTMLColor.Defaults.Background {
+    public static var background: HTMLColor.Theme.Background {
         @Dependency(\.color.background) var background
         return background
     }
 }
 
 extension HTMLColor {
-    public static var branding: HTMLColor.Defaults.Branding {
+    public static var branding: HTMLColor.Theme.Branding {
         @Dependency(\.color.branding) var branding
         return branding
     }
 }
 
-extension HTMLColor.Defaults: DependencyKey {
-    public static var liveValue: Self {
-        .init(
-            gray: .gray500,
-            blue: .blue500,
-            green: .green500,
-            purple: .purple500,
-            red: .red500,
-            yellow: .yellow500,
-            orange: .orange500,
-            teal: .teal500,
-            cyan: .cyan500,
-            pink: .pink500,
-            brown: .brown500,
-            black: .init(light: .hex("121212"), dark: .hex("121212")),
-            offBlack: .init(light: .hex("171717"), dark: .hex("171717")),
-            white: .init(light: .hex("fff"), dark: .hex("fff")),
-            offWhite: .init(light: .hex("fafafa"), dark: .hex("fafafa")),
-            text: .init(),
-            background: .init(),
-            branding: .init()
-        )
-    }
 
+
+extension HTMLColor.Theme: DependencyKey {
+    public static var liveValue: Self { .default }
     public static var testValue: Self { liveValue }
     public static var previewValue: Self { liveValue }
 }
 
 extension DependencyValues {
-    public var color: HTMLColor.Defaults {
-        get { self[HTMLColor.Defaults.self] }
-        set { self[HTMLColor.Defaults.self] = newValue }
+    public var color: HTMLColor.Theme {
+        get { self[HTMLColor.Theme.self] }
+        set { self[HTMLColor.Theme.self] = newValue }
     }
 }
 
