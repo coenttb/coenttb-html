@@ -581,7 +581,7 @@ public struct Timestamp: HTML {
                 }
                 .font(.body(.small))
                 .linkStyle(.init(underline: nil))
-                .dependency(\.color.text.link, .gray800.withDarkColor(.gray300))
+                .dependency(\.theme.text.link, .gray800.withDarkColor(.gray300))
                 .id(id)
                 .inlineStyle("font-variant-numeric", "tabular-nums")
                 .lineHeight(3, media: .desktop)

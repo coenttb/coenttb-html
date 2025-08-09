@@ -31,8 +31,8 @@ public struct Link<Label: HTML>: HTML {
 
 extension HTML {
     public func linkColor(_ linkColor: HTMLColor?) -> some HTML {
-        @Dependency(\.color.text.link) var color
-        return self.dependency(\.color.text.link, linkColor ?? color)
+        @Dependency(\.theme.text.link) var color
+        return self.dependency(\.theme.text.link, linkColor ?? color)
     }
     public func linkUnderline(_ linkUnderline: Bool?) -> some HTML {
         self.dependency(\.linkStyle.underline, linkUnderline)

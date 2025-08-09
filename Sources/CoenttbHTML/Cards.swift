@@ -42,9 +42,9 @@ public struct Cards: HTML {
 
 extension Cards {
     public struct Columns: Sendable {
-        public let closure: @Sendable (_ count: Int) -> [Int]
+        internal let closure: @Sendable (_ count: Int) -> [Int]
         
-        public init(_ closure: @escaping @Sendable (_: Int) -> [Int]) {
+        public init(_ closure: @escaping @Sendable (_ count: Int) -> [Int]) {
             self.closure = closure
         }
         

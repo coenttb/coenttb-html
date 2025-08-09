@@ -194,8 +194,8 @@ public struct Button<Label: HTML, Icon: HTML>: HTML {
         self.style = style
     }
 
-    @Dependency(\.color.text.button) var textColor
-    @Dependency(\.color.background.button) var background
+    @Dependency(\.theme.text.button) var textColor
+    @Dependency(\.theme.background.button) var background
 
     public var body: some HTML {
         return HTMLElementTypes.Button {
@@ -228,8 +228,8 @@ import SwiftUI
 #Preview {
     HTMLDocument {
         withDependencies {
-            $0.color.text.button = .yellow
-            $0.color.background.button = .red
+            $0.theme.text.button = .yellow
+            $0.theme.background.button = .red
         } operation: {
             CoenttbHTML.Button(
                 button: .init(type: .submit)

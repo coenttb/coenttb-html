@@ -137,34 +137,32 @@ extension HTMLColor.Theme {
 }
 
 extension HTMLColor {
-    public static var `default`: HTMLColor.Theme {
-        @Dependency(\.color) var color
+    public static var theme: HTMLColor.Theme {
+        @Dependency(\.theme) var color
         return color
     }
 }
 
 extension HTMLColor {
     public static var text: HTMLColor.Theme.Text {
-        @Dependency(\.color.text) var text
+        @Dependency(\.theme.text) var text
         return text
     }
 }
 
 extension HTMLColor {
     public static var background: HTMLColor.Theme.Background {
-        @Dependency(\.color.background) var background
+        @Dependency(\.theme.background) var background
         return background
     }
 }
 
 extension HTMLColor {
     public static var branding: HTMLColor.Theme.Branding {
-        @Dependency(\.color.branding) var branding
+        @Dependency(\.theme.branding) var branding
         return branding
     }
 }
-
-
 
 extension HTMLColor.Theme: DependencyKey {
     public static var liveValue: Self { .default }
@@ -173,7 +171,7 @@ extension HTMLColor.Theme: DependencyKey {
 }
 
 extension DependencyValues {
-    public var color: HTMLColor.Theme {
+    public var theme: HTMLColor.Theme {
         get { self[HTMLColor.Theme.self] }
         set { self[HTMLColor.Theme.self] = newValue }
     }
@@ -181,64 +179,64 @@ extension DependencyValues {
 
 extension HTMLColor {
     public static var gray: Self {
-        @Dependency(\.color.gray) var gray
+        @Dependency(\.theme.gray) var gray
         return gray
     }
     public static var black: Self {
-        @Dependency(\.color.black) var black
+        @Dependency(\.theme.black) var black
         return black
     }
     public static var offBlack: Self {
-        @Dependency(\.color.offBlack) var offBlack
+        @Dependency(\.theme.offBlack) var offBlack
         return offBlack
     }
     public static var white: Self {
-        @Dependency(\.color.white) var white
+        @Dependency(\.theme.white) var white
         return white
     }
     public static var offWhite: Self {
-        @Dependency(\.color.offWhite) var offWhite
+        @Dependency(\.theme.offWhite) var offWhite
         return offWhite
     }
     public static var cyan: Self {
-        @Dependency(\.color.cyan) var cyan
+        @Dependency(\.theme.cyan) var cyan
         return cyan
     }
     public static var teal: Self {
-        @Dependency(\.color.teal) var teal
+        @Dependency(\.theme.teal) var teal
         return teal
     }
     public static var pink: Self {
-        @Dependency(\.color.pink) var pink
+        @Dependency(\.theme.pink) var pink
         return pink
     }
     public static var brown: Self {
-        @Dependency(\.color.brown) var brown
+        @Dependency(\.theme.brown) var brown
         return brown
     }
 
     public static var orange: Self {
-        @Dependency(\.color.orange) var orange
+        @Dependency(\.theme.orange) var orange
         return orange
     }
     public static var green: Self {
-        @Dependency(\.color.green) var green
+        @Dependency(\.theme.green) var green
         return green
     }
     public static var purple: Self {
-        @Dependency(\.color.purple) var purple
+        @Dependency(\.theme.purple) var purple
         return purple
     }
     public static var blue: Self {
-        @Dependency(\.color.blue) var blue
+        @Dependency(\.theme.blue) var blue
         return blue
     }
     public static var red: Self {
-        @Dependency(\.color.red) var red
+        @Dependency(\.theme.red) var red
         return red
     }
     public static var yellow: Self {
-        @Dependency(\.color.yellow) var yellow
+        @Dependency(\.theme.yellow) var yellow
         return yellow
     }
 }
