@@ -23,7 +23,12 @@ public struct Cards: HTML {
 
     public var body: some HTML {
         LazyVGrid(
-            columns: [.desktop: columns(cards.count)],
+            columns: [
+                .mobile: [1],
+                .mobile && .landscape: [1],
+                .tablet && .landscape: [1],
+                .desktop: columns(cards.count)
+            ],
             horizontalSpacing: .rem(1),
             verticalSpacing: .rem(1)
         ) {
