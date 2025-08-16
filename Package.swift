@@ -19,6 +19,7 @@ extension Target.Dependency {
 
 extension Target.Dependency {
     static var markdownBuilder: Self { .product(name: "MarkdownBuilder", package: "swift-builders") }
+    static var builders: Self { .product(name: "Builders", package: "swift-builders") }
     static var dependencies: Self { .product(name: "Dependencies", package: "swift-dependencies") }
     static var html: Self { .product(name: "HTML", package: "swift-html") }
     static var htmlTranslating: Self { .product(name: "PointFreeHTMLTranslating", package: "pointfree-html-translating") }
@@ -66,7 +67,8 @@ let package = Package(
                 .dependencies,
                 .orderedCollections,
                 .html,
-                .htmlTranslating
+                .htmlTranslating,
+                .builders
             ]
         ),
         .testTarget(
