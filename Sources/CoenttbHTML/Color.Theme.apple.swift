@@ -59,7 +59,10 @@ extension HTMLColor.Theme.Background {
             grouped: .init(light: .hex("f2f2f7"), dark: .hex("000000")),
             selected: .init(light: .hex("d1d1d6"), dark: .hex("3a3a3c")),
             highlighted: .init(light: .hex("007aff").opacity(0.15), dark: .hex("0a84ff").opacity(0.15)),
-            button: .init(light: .hex("007aff"), dark: .hex("0a84ff"))
+            button: .init(light: .hex("007aff"), dark: .hex("0a84ff")),
+            error: .init(light: .hex("ffebe9"), dark: .hex("3a0f0c")),
+            success: .init(light: .hex("e6f4ea"), dark: .hex("0d2f1f")),
+            warning: .init(light: .hex("fff4e5"), dark: .hex("3a2003"))
         )
     }
 }

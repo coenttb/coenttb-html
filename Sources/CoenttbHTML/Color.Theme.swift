@@ -87,6 +87,11 @@ extension HTMLColor.Theme {
         public var highlighted: HTMLColor
 
         public var button: HTMLColor
+        
+        public var error: HTMLColor
+        public var success: HTMLColor
+        public var warning: HTMLColor
+        
 
         public init(
             primary: HTMLColor,
@@ -96,7 +101,10 @@ extension HTMLColor.Theme {
             grouped: HTMLColor,
             selected: HTMLColor,
             highlighted: HTMLColor,
-            button: HTMLColor
+            button: HTMLColor,
+            error: HTMLColor,
+            success: HTMLColor,
+            warning: HTMLColor
         ) {
             self.primary = primary
             self.secondary = secondary
@@ -106,6 +114,9 @@ extension HTMLColor.Theme {
             self.selected = selected
             self.highlighted = highlighted
             self.button = button
+            self.error = error
+            self.success = success
+            self.warning = warning
         }
     }
 }
