@@ -39,7 +39,7 @@ extension HTMLColor.Theme.Text {
             secondary: .init(light: .hex("57534e"), dark: .hex("d6d3d1")),
             tertiary: .init(light: .hex("a8a29e"), dark: .hex("78716c")),
             link: .init(light: .hex("2563eb"), dark: .hex("60a5fa")),
-            button: .init(light: .hex("ffffff"), dark: .hex("0c0a09")),
+            button: .init(light: .hex("1c1917"), dark: .hex("e7e5e4")),
             error: .init(light: .hex("dc2626"), dark: .hex("ef4444")),
             success: .init(light: .hex("16a34a"), dark: .hex("22c55e")),
             warning: .init(light: .hex("ca8a04"), dark: .hex("eab308")),
