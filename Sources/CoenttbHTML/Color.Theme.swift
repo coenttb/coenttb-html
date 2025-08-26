@@ -299,6 +299,8 @@ extension HTMLColor {
         @Dependency(\.theme.yellow) var yellow
         return yellow
     }
+    
+    public static let transparent: Self = .init(light: .transparent, dark: .transparent)
 }
 
 extension HTMLColor {
