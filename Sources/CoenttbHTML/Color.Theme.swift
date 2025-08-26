@@ -28,6 +28,7 @@ extension HTMLColor {
         public var offWhite: HTMLColor
         public var text: HTMLColor.Theme.Text
         public var background: HTMLColor.Theme.Background
+        public var border: HTMLColor.Theme.Border
         public var branding: HTMLColor.Theme.Branding
     }
 }
@@ -121,6 +122,47 @@ extension HTMLColor.Theme {
     }
 }
 
+extension HTMLColor.Theme {
+    public struct Border: Sendable {
+        public var primary: HTMLColor
+        public var secondary: HTMLColor
+        public var tertiary: HTMLColor
+
+        public var selected: HTMLColor
+        public var highlighted: HTMLColor
+
+        public var button: HTMLColor
+        
+        public var error: HTMLColor
+        public var success: HTMLColor
+        public var warning: HTMLColor
+        
+
+        public init(
+            primary: HTMLColor,
+            secondary: HTMLColor,
+            tertiary: HTMLColor,
+            selected: HTMLColor,
+            highlighted: HTMLColor,
+            button: HTMLColor,
+            error: HTMLColor,
+            success: HTMLColor,
+            warning: HTMLColor
+        ) {
+            self.primary = primary
+            self.secondary = secondary
+            self.tertiary = tertiary
+            self.selected = selected
+            self.highlighted = highlighted
+            self.button = button
+            self.error = error
+            self.success = success
+            self.warning = warning
+        }
+    }
+}
+
+
 
 
 extension HTMLColor.Theme {
@@ -165,6 +207,13 @@ extension HTMLColor {
     public static var background: HTMLColor.Theme.Background {
         @Dependency(\.theme.background) var background
         return background
+    }
+}
+
+extension HTMLColor {
+    public static var border: HTMLColor.Theme.Border {
+        @Dependency(\.theme.border) var border
+        return border
     }
 }
 

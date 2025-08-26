@@ -27,6 +27,7 @@ extension HTMLColor.Theme {
             offWhite: .init(light: .hex("f8fafc"), dark: .hex("f8fafc")),
             text: .slate,
             background: .slate,
+            border: .slate,
             branding: .slate
         )
     }
@@ -66,6 +67,23 @@ extension HTMLColor.Theme.Background {
         )
     }
 }
+
+extension HTMLColor.Theme.Border {
+    public static var slate: Self {
+        .init(
+            primary: .init(light: .hex("ffffff"), dark: .hex("020617")),
+            secondary: .init(light: .hex("f1f5f9"), dark: .hex("0f172a")),
+            tertiary: .init(light: .hex("e2e8f0"), dark: .hex("1e293b")),
+            selected: .init(light: .hex("cbd5e1"), dark: .hex("334155")),
+            highlighted: .init(light: .hex("e2e8f0").opacity(0.8), dark: .hex("475569").opacity(0.5)),
+            button: .init(light: .hex("f1f5f9"), dark: .hex("1e293b")),
+            error: .init(light: .hex("fee2e2"), dark: .hex("450a0a")),
+            success: .init(light: .hex("dcfce7"), dark: .hex("14532d")),
+            warning: .init(light: .hex("fef3c7"), dark: .hex("451a03"))
+        )
+    }
+}
+
 
 extension HTMLColor.Theme.Branding {
     public static var slate: Self {

@@ -27,6 +27,7 @@ extension HTMLColor.Theme {
             offWhite: .init(light: .hex("f9fafb"), dark: .hex("f9fafb")),
             text: .vapor,
             background: .vapor,
+            border: .vapor,
             branding: .vapor
         )
     }
@@ -57,6 +58,22 @@ extension HTMLColor.Theme.Background {
             tertiary: .init(light: .hex("e5e7eb"), dark: .hex("374151")),
             elevated: .init(light: .hex("ffffff"), dark: .hex("374151")),
             grouped: .init(light: .hex("f9fafb"), dark: .hex("1f2937")),
+            selected: .init(light: .hex("7b5fbe").opacity(0.1), dark: .hex("9376e0").opacity(0.2)),
+            highlighted: .init(light: .hex("7b5fbe").opacity(0.15), dark: .hex("9376e0").opacity(0.25)),
+            button: .init(light: .hex("7b5fbe"), dark: .hex("9376e0")),
+            error: .init(light: .hex("fee2e2"), dark: .hex("7f1d1d")),
+            success: .init(light: .hex("d1fae5"), dark: .hex("064e3b")),
+            warning: .init(light: .hex("fed7aa"), dark: .hex("7c2d12"))
+        )
+    }
+}
+
+extension HTMLColor.Theme.Border {
+    public static var vapor: Self {
+        .init(
+            primary: .init(light: .hex("ffffff"), dark: .hex("111827")),
+            secondary: .init(light: .hex("f3f4f6"), dark: .hex("1f2937")),
+            tertiary: .init(light: .hex("e5e7eb"), dark: .hex("374151")),
             selected: .init(light: .hex("7b5fbe").opacity(0.1), dark: .hex("9376e0").opacity(0.2)),
             highlighted: .init(light: .hex("7b5fbe").opacity(0.15), dark: .hex("9376e0").opacity(0.25)),
             button: .init(light: .hex("7b5fbe"), dark: .hex("9376e0")),

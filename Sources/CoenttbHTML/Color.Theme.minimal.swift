@@ -27,6 +27,7 @@ extension HTMLColor.Theme {
             offWhite: .init(light: .hex("f5f5f5"), dark: .hex("f5f5f5")),
             text: .minimal,
             background: .minimal,
+            border: .minimal,
             branding: .minimal
         )
     }
@@ -57,6 +58,22 @@ extension HTMLColor.Theme.Background {
             tertiary: .init(light: .hex("eeeeee"), dark: .hex("222222")),
             elevated: .init(light: .hex("ffffff"), dark: .hex("111111")),
             grouped: .init(light: .hex("f5f5f5"), dark: .hex("000000")),
+            selected: .init(light: .hex("e0e0e0"), dark: .hex("333333")),
+            highlighted: .init(light: .hex("ffff00").opacity(0.3), dark: .hex("ffff00").opacity(0.2)),
+            button: .init(light: .hex("000000"), dark: .hex("ffffff")),
+            error: .init(light: .hex("ffcccc"), dark: .hex("330000")),
+            success: .init(light: .hex("ccffcc"), dark: .hex("003300")),
+            warning: .init(light: .hex("ffffcc"), dark: .hex("333300"))
+        )
+    }
+}
+
+extension HTMLColor.Theme.Border {
+    public static var minimal: Self {
+        .init(
+            primary: .init(light: .hex("ffffff"), dark: .hex("000000")),
+            secondary: .init(light: .hex("f5f5f5"), dark: .hex("111111")),
+            tertiary: .init(light: .hex("eeeeee"), dark: .hex("222222")),
             selected: .init(light: .hex("e0e0e0"), dark: .hex("333333")),
             highlighted: .init(light: .hex("ffff00").opacity(0.3), dark: .hex("ffff00").opacity(0.2)),
             button: .init(light: .hex("000000"), dark: .hex("ffffff")),

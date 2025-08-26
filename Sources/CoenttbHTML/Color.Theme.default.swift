@@ -27,6 +27,7 @@ extension HTMLColor.Theme {
             offWhite: .init(light: .hex("fafafa"), dark: .hex("fafafa")),
             text: .default,
             background: .default,
+            border: .default,
             branding: .default
         )
     }
@@ -57,6 +58,22 @@ extension HTMLColor.Theme.Background {
             tertiary: .init(light: .hex("EBEBEB"), dark: .hex("2C2C2E")),
             elevated: .init(light: .hex("FFFFFF"), dark: .hex("1C1C1E")),
             grouped: .init(light: .hex("F2F2F7"), dark: .hex("1C1C1E")),
+            selected: .init(light: .hex("DCDCDC"), dark: .hex("3A3A3C")),
+            highlighted: .init(light: .hex("E5E5EA").opacity(0.6), dark: .hex("3A3A3C").opacity(0.6)),
+            button: .init(light: .rgb(red: 245, green: 246, blue: 248), dark: .rgb(red: 25, green: 25, blue: 27)),
+            error: .init(light: .hex("fee2e2"), dark: .hex("450a0a")),
+            success: .init(light: .hex("dcfce7"), dark: .hex("14532d")),
+            warning: .init(light: .hex("fef3c7"), dark: .hex("451a03"))
+        )
+    }
+}
+
+extension HTMLColor.Theme.Border {
+    public static var `default`: Self {
+        .init(
+            primary: .init(light: .hex("FFFFFF"), dark: .hex("121212")),
+            secondary: .init(light: .hex("F2F2F7"), dark: .hex("1C1C1E")),
+            tertiary: .init(light: .hex("EBEBEB"), dark: .hex("2C2C2E")),
             selected: .init(light: .hex("DCDCDC"), dark: .hex("3A3A3C")),
             highlighted: .init(light: .hex("E5E5EA").opacity(0.6), dark: .hex("3A3A3C").opacity(0.6)),
             button: .init(light: .rgb(red: 245, green: 246, blue: 248), dark: .rgb(red: 25, green: 25, blue: 27)),

@@ -27,6 +27,7 @@ extension HTMLColor.Theme {
             offWhite: .init(light: .hex("fafafa"), dark: .hex("fafafa")),
             text: .zinc,
             background: .zinc,
+            border: .zinc,
             branding: .zinc
         )
     }
@@ -57,6 +58,22 @@ extension HTMLColor.Theme.Background {
             tertiary: .init(light: .hex("e4e4e7"), dark: .hex("27272a")),
             elevated: .init(light: .hex("ffffff"), dark: .hex("27272a")),
             grouped: .init(light: .hex("fafafa"), dark: .hex("18181b")),
+            selected: .init(light: .hex("d4d4d8"), dark: .hex("3f3f46")),
+            highlighted: .init(light: .hex("e4e4e7").opacity(0.8), dark: .hex("52525b").opacity(0.5)),
+            button: .init(light: .hex("f4f4f5"), dark: .hex("27272a")),
+            error: .init(light: .hex("fee2e2"), dark: .hex("450a0a")),
+            success: .init(light: .hex("dcfce7"), dark: .hex("14532d")),
+            warning: .init(light: .hex("fef3c7"), dark: .hex("451a03"))
+        )
+    }
+}
+
+extension HTMLColor.Theme.Border {
+    public static var zinc: Self {
+        .init(
+            primary: .init(light: .hex("ffffff"), dark: .hex("09090b")),
+            secondary: .init(light: .hex("f4f4f5"), dark: .hex("18181b")),
+            tertiary: .init(light: .hex("e4e4e7"), dark: .hex("27272a")),
             selected: .init(light: .hex("d4d4d8"), dark: .hex("3f3f46")),
             highlighted: .init(light: .hex("e4e4e7").opacity(0.8), dark: .hex("52525b").opacity(0.5)),
             button: .init(light: .hex("f4f4f5"), dark: .hex("27272a")),

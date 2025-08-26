@@ -27,6 +27,7 @@ extension HTMLColor.Theme {
             offWhite: .init(light: .hex("fafafa"), dark: .hex("fafafa")),
             text: .documentation,
             background: .documentation,
+            border: .documentation,
             branding: .documentation
         )
     }
@@ -66,6 +67,23 @@ extension HTMLColor.Theme.Background {
         )
     }
 }
+
+extension HTMLColor.Theme.Border {
+    public static var documentation: Self {
+        .init(
+            primary: .init(light: .hex("ffffff"), dark: .hex("0f172a")),
+            secondary: .init(light: .hex("f9fafb"), dark: .hex("1e293b")),
+            tertiary: .init(light: .hex("f3f4f6"), dark: .hex("334155")),
+            selected: .init(light: .hex("eff6ff"), dark: .hex("1e3a8a")),
+            highlighted: .init(light: .hex("fef3c7"), dark: .hex("78350f")),
+            button: .init(light: .hex("2563eb"), dark: .hex("3b82f6")),
+            error: .init(light: .hex("fee2e2"), dark: .hex("450a0a")),
+            success: .init(light: .hex("d1fae5"), dark: .hex("064e3b")),
+            warning: .init(light: .hex("fef3c7"), dark: .hex("451a03"))
+        )
+    }
+}
+
 
 extension HTMLColor.Theme.Branding {
     public static var documentation: Self {
