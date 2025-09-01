@@ -11,10 +11,7 @@ extension String {
 }
 
 extension Target.Dependency {
-    static var coenttbMarkdown: Self { .target(name: .coenttbMarkdown) }
     static var coenttbHtml: Self { .target(name: .coenttbHtml) }
-    static var coenttbEmail: Self { .target(name: .coenttbEmail) }
-    static var coenttbHtmlToPdf: Self { .target(name: .coenttbHtmlToPdf) }
 }
 
 extension Target.Dependency {
@@ -22,6 +19,9 @@ extension Target.Dependency {
     static var builders: Self { .product(name: "Builders", package: "swift-builders") }
     static var dependencies: Self { .product(name: "Dependencies", package: "swift-dependencies") }
     static var html: Self { .product(name: "HTML", package: "swift-html") }
+    static var htmlTheme: Self { .product(name: "HTMLTheme", package: "swift-html-theme") }
+    static var htmlMarkdown: Self { .product(name: "HTMLMarkdown", package: "swift-html-markdown") }
+    static var htmlEmail: Self { .product(name: "HTMLEmail", package: "swift-html-email") }
     static var htmlTranslating: Self { .product(name: "PointFreeHTMLTranslating", package: "pointfree-html-translating") }
     static var translating: Self { .product(name: "Translating", package: "swift-translating") }
     static var pointfreeHTMLTestSupport: Self { .product(name: "PointFreeHTMLTestSupport", package: "pointfree-html") }
@@ -43,22 +43,17 @@ let package = Package(
         .watchOS(.v10)
     ],
     products: [
-        .library(name: .coenttbHtml, targets: [.coenttbHtml]),
-        .library(name: .coenttbMarkdown, targets: [.coenttbMarkdown]),
-        .library(name: .coenttbEmail, targets: [.coenttbEmail]),
-        .library(name: .coenttbHtmlToPdf, targets: [.coenttbHtmlToPdf])
+        .library(name: .coenttbHtml, targets: [.coenttbHtml])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-collections.git", from: "1.1.2"),
         .package(url: "https://github.com/coenttb/pointfree-html.git", from: "2.0.0"),
-        .package(url: "https://github.com/coenttb/pointfree-html-to-pdf.git", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/pointfree-html-translating.git", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-builders.git", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-html.git", branch: "main"),
-        .package(url: "https://github.com/coenttb/swift-html-css-pointfree.git", from: "0.0.1"),
+        .package(url: "https://github.com/coenttb/swift-html-theme", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-translating.git", from: "0.0.1"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies.git", from: "1.9.2"),
-        .package(url: "https://github.com/swiftlang/swift-markdown.git", from: "0.4.0")
     ],
     targets: [
         .target(
@@ -67,6 +62,7 @@ let package = Package(
                 .dependencies,
                 .orderedCollections,
                 .html,
+                .htmlTheme,
                 .htmlTranslating,
                 .builders
             ]
@@ -78,54 +74,6 @@ let package = Package(
                 .pointfreeHTMLTestSupport
             ]
         ),
-        .target(
-            name: .coenttbMarkdown,
-            dependencies: [
-                .dependencies,
-                .orderedCollections,
-                .coenttbHtml,
-                .swiftMarkdown,
-                .markdownBuilder
-            ]
-        ),
-        .testTarget(
-            name: .coenttbMarkdown.tests,
-            dependencies: [
-                .coenttbMarkdown,
-                .pointfreeHTMLTestSupport
-            ]
-        ),
-        .target(
-            name: .coenttbEmail,
-            dependencies: [
-                .dependencies,
-                .orderedCollections,
-                .swiftMarkdown,
-                .translating,
-                .coenttbHtml,
-                .coenttbMarkdown
-            ]
-        ),
-        .testTarget(
-            name: .coenttbEmail.tests,
-            dependencies: [
-                .coenttbEmail,
-                .pointfreeHTMLTestSupport
-            ]
-        ),
-        .target(
-            name: .coenttbHtmlToPdf,
-            dependencies: [
-                .pointFreeHTMLToPDF
-            ]
-        ),
-        .testTarget(
-            name: .coenttbHtmlToPdf.tests,
-            dependencies: [
-                .coenttbHtmlToPdf,
-                .pointfreeHTMLTestSupport
-            ]
-        )
     ],
     swiftLanguageModes: [.v6]
 )

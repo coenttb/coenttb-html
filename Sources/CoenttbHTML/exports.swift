@@ -7,4 +7,5 @@
 
 @_exported import Dependencies
 @_exported import HTML
+@_exported import HTMLTheme
 @_exported import PointFreeHTMLTranslating
